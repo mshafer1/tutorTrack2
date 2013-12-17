@@ -12,10 +12,10 @@ using SelfBalancedTree;
 
 namespace tutorTrack2
 {
-    static class singeltonTutorTree
+    static class singeltonTutorList
     {
         const string TUTOR_FILE_NAME = "tutors.xml";
-        public static  AVLTree<Tutor> getInstance()
+        public static  List<Tutor> getInstance()
         {
             if (p == null)
             {
@@ -24,7 +24,7 @@ namespace tutorTrack2
                     using (StreamReader reader = new StreamReader(TUTOR_FILE_NAME))
                     {
                         string xml = reader.ReadToEnd();
-                        p = xmlSerilizerFunctions.FromXML<AVLTree<Tutor>>(xml);
+                        p = xmlSerilizerFunctions.FromXML<List<Tutor>>(xml);
                     }
                 }
                 else
@@ -35,6 +35,6 @@ namespace tutorTrack2
             }
             return p;
         }
-        private static AVLTree<Tutor> p;
+        private static List<Tutor> p;
     }
 }

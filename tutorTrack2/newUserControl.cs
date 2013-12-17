@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Linq;
 
 namespace tutorTrack2
 {
@@ -14,12 +15,35 @@ namespace tutorTrack2
     {
         List<string> courses;
         List<string> tutorNames;
+        private string name;
+        private string id;
+
         public newUserControl()
         {
             InitializeComponent();
-            courses = new List<string>();
-            courses.Add("Select a course");
+            //courses = new List<string>();
+            try
+            {
+                var coursesList = (from tutor in singeltonTutorList.getInstance()
+                                   select tutor.classes());
+
+                foreach (Course course in (List<Course>)coursesList)
+                {
+                    if (!courses.Contains(course.name))
+                    {
+                        courses.Add(course.name);
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                courses = new List<string>();
+            }
+            courses = courses.Distinct().ToList<string>();
+            courses.Add("New");
             cBCourses.DataSource = courses ;
+
+            id = name = "";
 
             tutorNames = new List<string>();
             tutorNames.Add("Select a Tutor");
@@ -60,7 +84,7 @@ namespace tutorTrack2
 
         private void tBName_TextChanged(object sender, EventArgs e)
         {
-
+            name = tBName.Text;
         }
 
         private void textBoxID_MouseClick(object sender, MouseEventArgs e)
@@ -73,11 +97,25 @@ namespace tutorTrack2
 
         private void tBid_TextChanged(object sender, EventArgs e)
         {
-
+            id = tBid.Text;
         }
 
-
-
+        private void btnOk_Click(object sender, EventArgs e)
+        {
+            if (id.Length != 0 && name.Length != 0 && cBCourses.SelectedItem.ToString() != "Select a course")
+            {
+                if (rbClient.Checked)
+                {
+                    addClient();
+                }
+            }
+            else
+            {
+                label1.Visible = name.Length == 0;
+                label2.Visible = id.Length == 0;
+                label3.Visible = cBCourses.SelectedItem.ToString() == "Select a course";
+            }
+        }
 
         #region client
         private void Courses_SelectedIndexChanged(object sender, EventArgs e)
@@ -99,16 +137,17 @@ namespace tutorTrack2
 
         }
 
+        void addClient()
+        {
+            Client current = new Client();
+            current.id = id;
+            current.name = name;
+        }
+
         #endregion
-
-
-
-
 
         #region tutor
 
         #endregion
-
-
     }
 }

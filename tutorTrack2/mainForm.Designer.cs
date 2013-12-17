@@ -35,9 +35,9 @@
             // 
             // newUserControl1
             // 
-            this.newUserControl1.Location = new System.Drawing.Point(-1, -5);
+            this.newUserControl1.Location = new System.Drawing.Point(-1, 0);
             this.newUserControl1.Name = "newUserControl1";
-            this.newUserControl1.Size = new System.Drawing.Size(215, 293);
+            this.newUserControl1.Size = new System.Drawing.Size(299, 293);
             this.newUserControl1.TabIndex = 2;
             this.newUserControl1.Visible = false;
             // 

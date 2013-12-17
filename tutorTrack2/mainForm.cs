@@ -14,7 +14,7 @@ namespace tutorTrack2
 {
     public partial class mainForm : Form
     {
-        private static AVLTree<Tutor> tutors;
+        private static List<Tutor> tutors;
         public mainForm()
         {
             InitializeComponent();
@@ -29,7 +29,7 @@ namespace tutorTrack2
 
             try
             {
-                tutors = singeltonTutorTree.getInstance();
+                tutors = singeltonTutorList.getInstance();
             }
             catch(Exception x)
             {
@@ -65,8 +65,10 @@ namespace tutorTrack2
             using (Tutor current = new Tutor())
             {
                 current.id = login1.id;
-                if (tutors.slowContains(current))
+                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.id != current.id);
+                if (tutors.Find(temp)!=null)
                 {
+                    MessageBox.Show("it found you!");
                 }
                 else
                 {

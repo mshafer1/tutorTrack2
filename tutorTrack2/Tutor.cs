@@ -6,26 +6,82 @@ using System.Threading.Tasks;
 
 namespace tutorTrack2
 {
-    class Tutor : User, IDisposable, IComparable<Tutor>
+    class Tutor : User, IDisposable, /*IComparable<Tutor>,*/ IEquatable<Tutor>
     {
         void System.IDisposable.Dispose()
         {
         }
-
-        public int CompareTo(Tutor input)
+        public override int GetHashCode()
         {
-            int result;// = 0;
-
-            if (input.id == id || input.id == name)
+            return System.Convert.ToInt16(id);
+        }
+        private List<Course> courses;
+        public void addCourse(Course newCourse)
+        {
+            if (!courses.Contains(newCourse))
             {
-                result = 0;
+                courses.Add(newCourse);
             }
-            else
+        }
+        public List<Course> classes()
+        {
+            List<Course> result = new List<Course>();
+            foreach (var c in courses)
             {
-                result = string.Compare(input.id, id);
+                if (!result.Contains(c))
+                {
+                    result.Add(c);
+                }
             }
-
             return result;
+        }
+        //public int CompareTo(Tutor input)
+        //{
+        //    int result;// = 0;
+
+        //    if (input.id == id || input.id == name)
+        //    {
+        //        result = 0;
+        //    }
+        //    else
+        //    {
+        //        result = string.Compare(input.id, id);
+        //    }
+
+        //    return result;
+        //}
+       
+        //  bool System.IEquatable<object>.Equals(object input)
+        //{
+        //    bool result;// = 0;
+
+        //    if (input == this)
+        //    {
+        //        result = true;
+        //    }
+        //    else
+        //    {
+        //        result = false;
+        //    }
+
+        //    return result;
+        //}
+
+        public override bool Equals(object obj)
+        {
+            if (obj == null) return false;
+            Tutor objAsTutor = obj as Tutor;
+            if (objAsTutor == null) return false;
+            else return Equals(objAsTutor);
+        }
+
+        public bool Equals(Tutor other)
+        {
+            if (other == null)
+            {
+                return false;
+            }
+            return (id == other.id);
         }
     }
 }

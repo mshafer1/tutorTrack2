@@ -13,7 +13,7 @@ namespace tutorTrack2
         public string id
         {
             get { return this.idString; }
-            set { this.id = value; }
+            set { this.idString = value; }
         }
 
         public string name

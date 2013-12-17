@@ -51,6 +51,8 @@
       <DependentUpon>Admin.cs</DependentUpon>
     </Compile>
     <Compile Include="AvlTree.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="Course.cs" />
     <Compile Include="mainForm.cs">
       <SubType>Form</SubType>
     </Compile>
