@@ -22,6 +22,11 @@ namespace tutorTrack2
             admin1.newUserEventHandler += this.newUser;
             admin1.timeSheetsEventHandler += this.timeSheet;
             admin1.viewLogsEventHandler += this.viewLogs;
+
+            newUserControl1.Visible = false;
+            admin1.Visible = false;
+            login1.Visible = true;
+
             try
             {
                 tutors = singeltonTutorTree.getInstance();
@@ -44,7 +49,8 @@ namespace tutorTrack2
 
         private void newUser(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+            admin1.Visible = false;
+            newUserControl1.Visible = true;
         }
 
         private void runAdmin()
@@ -71,7 +77,7 @@ namespace tutorTrack2
 
         private void Form1_Load(object sender, EventArgs e)
         {
-
+           
         }
     }
 }

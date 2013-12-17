@@ -28,16 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.login1 = new tutorTrack2.login();
+            this.newUserControl1 = new tutorTrack2.newUserControl();
             this.admin1 = new tutorTrack2.Admin();
+            this.login1 = new tutorTrack2.login();
             this.SuspendLayout();
             // 
-            // login1
+            // newUserControl1
             // 
-            this.login1.Location = new System.Drawing.Point(18, 30);
-            this.login1.Name = "login1";
-            this.login1.Size = new System.Drawing.Size(269, 50);
-            this.login1.TabIndex = 0;
+            this.newUserControl1.Location = new System.Drawing.Point(-1, -5);
+            this.newUserControl1.Name = "newUserControl1";
+            this.newUserControl1.Size = new System.Drawing.Size(215, 293);
+            this.newUserControl1.TabIndex = 2;
+            this.newUserControl1.Visible = false;
             // 
             // admin1
             // 
@@ -47,11 +49,19 @@
             this.admin1.TabIndex = 1;
             this.admin1.Visible = false;
             // 
+            // login1
+            // 
+            this.login1.Location = new System.Drawing.Point(18, 30);
+            this.login1.Name = "login1";
+            this.login1.Size = new System.Drawing.Size(269, 50);
+            this.login1.TabIndex = 0;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(299, 268);
+            this.ClientSize = new System.Drawing.Size(297, 289);
+            this.Controls.Add(this.newUserControl1);
             this.Controls.Add(this.admin1);
             this.Controls.Add(this.login1);
             this.Name = "mainForm";
@@ -65,6 +75,7 @@
 
         private login login1;
         private Admin admin1;
+        private newUserControl newUserControl1;
 
     }
 }
