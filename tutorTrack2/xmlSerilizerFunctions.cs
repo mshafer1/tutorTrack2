@@ -8,7 +8,7 @@ using System.Xml.Serialization;
 
 namespace tutorTrack2
 {
-    static class xmlSerilizerFunctions
+    static class xmlSerializerFunctions
     {
         public static T FromXML<T>(string xml)
         {
@@ -21,7 +21,7 @@ namespace tutorTrack2
 
         public static string ToXML<T>(T obj)
         {
-            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
+            using (StringWriter stringWriter = new StringWriter())
             {
                 XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
                 xmlSerializer.Serialize(stringWriter, obj);

@@ -23,6 +23,7 @@ namespace tutorTrack2
             admin1.timeSheetsEventHandler += this.timeSheet;
             admin1.viewLogsEventHandler += this.viewLogs;
 
+            //newUserControl1 = new newUserControl();
             newUserControl1.Visible = false;
             admin1.Visible = false;
             login1.Visible = true;
@@ -49,14 +50,20 @@ namespace tutorTrack2
 
         private void newUser(object sender, EventArgs e)
         {
-            admin1.Visible = false;
-            newUserControl1.Visible = true;
+            
+                admin1.Visible = false;
+            
+                newUserControl1.Visible = true;
+            
+               
+            
         }
 
         private void runAdmin()
         {
             admin1.Visible = true;
             login1.Visible = false;
+            newUserControl1.Visible = false;
             admin1.Focus();
         }
 

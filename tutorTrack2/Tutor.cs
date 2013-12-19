@@ -6,10 +6,15 @@ using System.Threading.Tasks;
 
 namespace tutorTrack2
 {
-    class Tutor : User, IDisposable, /*IComparable<Tutor>,*/ IEquatable<Tutor>
+    public class Tutor : User, IDisposable, /*IComparable<Tutor>,*/ IEquatable<Tutor>
     {
+        public Tutor()
+        {
+            courses = new List<Course>();
+        }
         void System.IDisposable.Dispose()
         {
+            courses.Clear();
         }
         public override int GetHashCode()
         {
@@ -35,22 +40,8 @@ namespace tutorTrack2
             }
             return result;
         }
-        //public int CompareTo(Tutor input)
-        //{
-        //    int result;// = 0;
 
-        //    if (input.id == id || input.id == name)
-        //    {
-        //        result = 0;
-        //    }
-        //    else
-        //    {
-        //        result = string.Compare(input.id, id);
-        //    }
 
-        //    return result;
-        //}
-       
         //  bool System.IEquatable<object>.Equals(object input)
         //{
         //    bool result;// = 0;

@@ -5,7 +5,7 @@ using System.Text;
 
 namespace tutorTrack2
 {
-    class Course: IComparable<Course>
+    public class Course: IComparable<Course>
     {
         string commonName;
         string idString;

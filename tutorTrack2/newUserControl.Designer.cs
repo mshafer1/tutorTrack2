@@ -33,6 +33,7 @@
             this.cBCourses = new System.Windows.Forms.ComboBox();
             this.cBTutors = new System.Windows.Forms.ComboBox();
             this.gBClient = new System.Windows.Forms.GroupBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.tBName = new System.Windows.Forms.TextBox();
             this.tBid = new System.Windows.Forms.TextBox();
             this.btnOk = new System.Windows.Forms.Button();
@@ -40,7 +41,6 @@
             this.lbTutorCourses = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
             this.gBClient.SuspendLayout();
             this.gBtutor.SuspendLayout();
             this.SuspendLayout();
@@ -102,6 +102,16 @@
             this.gBClient.TabStop = false;
             this.gBClient.Text = " ";
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(141, 20);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(105, 13);
+            this.label3.TabIndex = 3;
+            this.label3.Text = "Must select a course";
+            this.label3.Visible = false;
+            // 
             // tBName
             // 
             this.tBName.Location = new System.Drawing.Point(4, 52);
@@ -124,7 +134,7 @@
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(130, 262);
+            this.btnOk.Location = new System.Drawing.Point(116, 283);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
             this.btnOk.TabIndex = 6;
@@ -135,7 +145,7 @@
             // gBtutor
             // 
             this.gBtutor.Controls.Add(this.lbTutorCourses);
-            this.gBtutor.Location = new System.Drawing.Point(4, 118);
+            this.gBtutor.Location = new System.Drawing.Point(11, 133);
             this.gBtutor.Name = "gBtutor";
             this.gBtutor.Size = new System.Drawing.Size(279, 144);
             this.gBtutor.TabIndex = 8;
@@ -150,6 +160,8 @@
             this.lbTutorCourses.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.lbTutorCourses.Size = new System.Drawing.Size(120, 121);
             this.lbTutorCourses.TabIndex = 0;
+            this.lbTutorCourses.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbTutorCourses_MouseClick);
+            this.lbTutorCourses.SelectedIndexChanged += new System.EventHandler(this.lbTutorCourses_SelectedIndexChanged);
             // 
             // label1
             // 
@@ -171,16 +183,6 @@
             this.label2.Text = "Must enter an id#";
             this.label2.Visible = false;
             // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(141, 20);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(105, 13);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "Must select a course";
-            this.label3.Visible = false;
-            // 
             // newUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -195,7 +197,8 @@
             this.Controls.Add(this.rbTutor);
             this.Controls.Add(this.rbClient);
             this.Name = "newUserControl";
-            this.Size = new System.Drawing.Size(290, 294);
+            this.Size = new System.Drawing.Size(290, 306);
+            this.Load += new System.EventHandler(this.newUserControl_Load);
             this.gBClient.ResumeLayout(false);
             this.gBClient.PerformLayout();
             this.gBtutor.ResumeLayout(false);

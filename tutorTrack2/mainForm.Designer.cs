@@ -37,7 +37,7 @@
             // 
             this.newUserControl1.Location = new System.Drawing.Point(-1, 0);
             this.newUserControl1.Name = "newUserControl1";
-            this.newUserControl1.Size = new System.Drawing.Size(299, 293);
+            this.newUserControl1.Size = new System.Drawing.Size(299, 310);
             this.newUserControl1.TabIndex = 2;
             this.newUserControl1.Visible = false;
             // 
@@ -60,10 +60,12 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(297, 289);
+            this.ClientSize = new System.Drawing.Size(298, 313);
             this.Controls.Add(this.newUserControl1);
             this.Controls.Add(this.admin1);
             this.Controls.Add(this.login1);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "mainForm";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.Form1_Load);
