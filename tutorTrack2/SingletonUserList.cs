@@ -41,6 +41,6 @@ namespace tutorTrack2
                 writer.Close();
             }
         }
-        private static List<Client> p;
+        private static  List<Client>  p;
     }
 }

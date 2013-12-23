@@ -6,19 +6,19 @@ using System.Threading.Tasks;
 
 namespace tutorTrack2
 {
-    public class Tutor : User, IDisposable, /*IComparable<Tutor>,*/ IEquatable<Tutor>
+    public class Tutor : User /*IComparable<Tutor>,*/ 
     {
         public Tutor()
         {
             courses = new List<Course>();
         }
-        void System.IDisposable.Dispose()
-        {
-            courses.Clear();
-        }
+        //void System.IDisposable.Dispose()
+        //{
+        //    courses.Clear();
+        //}
         public override int GetHashCode()
         {
-            return System.Convert.ToInt16(id);
+            return System.Convert.ToInt16(idString);
         }
         private List<Course> courses;
         public void addCourse(Course newCourse)
@@ -58,21 +58,21 @@ namespace tutorTrack2
         //    return result;
         //}
 
-        public override bool Equals(object obj)
-        {
-            if (obj == null) return false;
-            Tutor objAsTutor = obj as Tutor;
-            if (objAsTutor == null) return false;
-            else return Equals(objAsTutor);
-        }
+        //public override bool Equals(object obj)
+        //{
+        //    if (obj == null) return false;
+        //    Tutor objAsTutor = obj as Tutor;
+        //    if (objAsTutor == null) return false;
+        //    else return Equals(objAsTutor);
+        //}
 
-        public bool Equals(Tutor other)
-        {
-            if (other == null)
-            {
-                return false;
-            }
-            return (id == other.id);
-        }
+        //public bool Equals(Tutor other)
+        //{
+        //    if (other == null)
+        //    {
+        //        return false;
+        //    }
+        //    return (idString == other.idString);
+        //}
     }
 }

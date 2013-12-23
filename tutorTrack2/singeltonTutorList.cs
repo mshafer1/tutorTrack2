@@ -1,5 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
@@ -9,6 +12,7 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
 using SelfBalancedTree;
+using System.Xml.Serialization;
 
 namespace tutorTrack2
 {
@@ -46,14 +50,23 @@ namespace tutorTrack2
         }
         public static void saveToFile()
         {
-            string xml = xmlSerializerFunctions.ToXML<List<Tutor>>(p);
-            using (StreamWriter writer = new StreamWriter(TUTOR_FILE_NAME))
+            using (System.IO.StreamWriter writer = new System.IO.StreamWriter("students.xml"))
             {
-                
+                string xml = ToXML<List<Tutor>>(p);
                 writer.Write(xml);
                 writer.Close();
             }
         }
-        private static List<Tutor> p;
+        private static List<Tutor> p = null;
+
+        public static string ToXML<T>(T obj)
+        {
+            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
+            {
+                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
+                xmlSerializer.Serialize(stringWriter, obj);
+                return stringWriter.ToString();
+            }
+        }
     }
 }

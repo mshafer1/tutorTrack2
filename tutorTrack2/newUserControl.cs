@@ -111,7 +111,7 @@ namespace tutorTrack2
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (id.Length != 0 && name.Length != 0 && cBCourses.SelectedItem.ToString() != "Select a course")
+            if (id.Length != 0 && name.Length != 0)
             {
                 if (rbClient.Checked)
                 {
@@ -141,7 +141,7 @@ namespace tutorTrack2
                 try
                 {
                     tutorNames = (from tutors in singeltonTutorList.getInstance()
-                                  select tutors.name).ToList<String>();
+                                  select tutors.getName()).ToList<String>();
                 }
                 catch (Exception)
                 {
@@ -162,8 +162,8 @@ namespace tutorTrack2
         void addClient()
         {
             Client current = new Client();
-            current.id = id;
-            current.name = name;
+            current.setId(id);
+            current.setName(name);
             if (!singeltonUsesrList.getInstance().Contains(current))
             {
 
@@ -199,8 +199,8 @@ namespace tutorTrack2
         private void addTutor()
         {
             Tutor current = new Tutor();
-            current.name = name;
-            current.id = id;
+            current.setName(name);
+            current.setId(id);
             if ( !singeltonTutorList.getInstance().Contains(current))
             {
                 singeltonTutorList.getInstance().Add(current);

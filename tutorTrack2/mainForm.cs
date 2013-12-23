@@ -69,10 +69,10 @@ namespace tutorTrack2
 
         private void loginFunction(object sender, EventArgs e)
         {
-            using (Tutor current = new Tutor())
+            Tutor current = new Tutor();
             {
-                current.id = login1.id;
-                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.id != current.id);
+                current.setId(login1.id);
+                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.getid() != current.getid());
                 if (tutors.Find(temp)!=null)
                 {
                     MessageBox.Show("it found you!");
