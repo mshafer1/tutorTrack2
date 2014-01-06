@@ -11,7 +11,7 @@
 //// Only parent pointers traversal is implemented in the code below.
 //// To disable uncomment the following line
 
-//#define TREE_WITH_PARENT_POINTERS
+#define TREE_WITH_PARENT_POINTERS
 
 ////---------------------------------------
 //// TREE_WITH_CONCAT_AND_SPLIT_OPERATIONS: 
@@ -39,7 +39,7 @@ namespace SelfBalancedTree
     {
         #region Fields
 
-        private Node<T> Root;
+        public Node<T> Root;
         private IComparer<T> comparer;
 
         #endregion
@@ -81,7 +81,7 @@ namespace SelfBalancedTree
         /// <typeparam name="TNode">The type of the node.</typeparam>
         /// <param name="node">The node.</param>
         /// <param name="level">The level.</param>
-        private delegate void VisitNodeHandler<TNode>(TNode node, int level);
+        public delegate void VisitNodeHandler<TNode>(TNode node, int level);
 
         #endregion
 
@@ -149,6 +149,29 @@ namespace SelfBalancedTree
         #endregion
 
         #region Public Methods
+        List<T> result;
+        public List<T> getList()
+        {
+            result = new List<T>();
+            
+            getList(Root);
+            return result;
+        }
+
+        private void getList(Node<T> p)
+        {
+            if (p.Left != null)
+            {
+                getList(p.Left);
+            }
+
+            result.Add(p.Data);
+
+            if (p.Right != null)
+            {
+                getList(p.Right);
+            }
+        }
 
         /// <summary>
         /// Adds the specified value argument. 
@@ -1603,7 +1626,7 @@ namespace SelfBalancedTree
         /// node class
         /// </summary>
         /// <typeparam name="TElem">The type of the elem.</typeparam>
-        private class Node<TElem>
+        public class Node<TElem>
         {
             #region Properties
 

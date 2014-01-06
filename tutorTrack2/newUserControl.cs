@@ -25,20 +25,22 @@ namespace tutorTrack2
                 tutors = singeltonTutorList.getInstance();
                 if (tutors.Count != 0)
                 {
-                    var coursesList = (from tutor in tutors
-                                       select tutor.classes());
+                    var coursesList = singletonAvailClassesList.getInstance();
 
-                    foreach (Course course in (List<Course>)coursesList)
+                    foreach (Course course in coursesList)
                     {
-                        if (!courses.Contains(course.name))
+                        string line = course.commonName + ", " + course.id;
+                        if (!courses.Contains(line))
                         {
-                            courses.Add(course.name);
+                            courses.Add(line);
                         }
                     }
+                    //courses.Add("testing");
                 }
             }
             catch (Exception)
             {
+                tutors = singeltonTutorList.getInstance();
             }
             courses = courses.Distinct().ToList<string>();
             courses.Add("New");
@@ -121,6 +123,7 @@ namespace tutorTrack2
                 {
                     addTutor();
                 }
+                this.Visible = false;
             }
             else
             {
@@ -141,7 +144,7 @@ namespace tutorTrack2
                 try
                 {
                     tutorNames = (from tutors in singeltonTutorList.getInstance()
-                                  select tutors.getName()).ToList<String>();
+                                  select tutors.Name).ToList<String>();
                 }
                 catch (Exception)
                 {
@@ -162,8 +165,8 @@ namespace tutorTrack2
         void addClient()
         {
             Client current = new Client();
-            current.setId(id);
-            current.setName(name);
+            current.Id = id;
+            current.Name = (name);
             if (!singeltonUsesrList.getInstance().Contains(current))
             {
 
@@ -175,10 +178,7 @@ namespace tutorTrack2
 
 
         #region tutor
-        private void lbTutorCourses_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
-        }
 
         private void lbTutorCourses_MouseClick(object sender, MouseEventArgs e)
         {
@@ -187,8 +187,13 @@ namespace tutorTrack2
                 string temp = lbTutorCourses.SelectedItem.ToString();
                 if (lbTutorCourses.SelectedItem.ToString() == "New")
                 {
-
-                    courses.Add("testing");
+                    NewClassForm newClassForm1 = new NewClassForm();
+                    newClassForm1.ShowDialog();
+                    if (newClassForm1.newClass)
+                    {
+                        courses.Add(newClassForm1.name + ", " + newClassForm1.id);
+                    }
+                    
                     //lbTutorCourses.ClearSelected();
                     lbTutorCourses.DataSource = null;
                     lbTutorCourses.DataSource = courses;
@@ -199,8 +204,13 @@ namespace tutorTrack2
         private void addTutor()
         {
             Tutor current = new Tutor();
-            current.setName(name);
-            current.setId(id);
+            current.Name = (name);
+            current.Id = (id);
+            Course newCourse = new Course();
+            newCourse.id = lbTutorCourses.SelectedValue.ToString().Substring(0, lbTutorCourses.SelectedValue.ToString().IndexOf(','));
+            newCourse.name = lbTutorCourses.SelectedValue.ToString().Substring(lbTutorCourses.SelectedValue.ToString().IndexOf(',')+2);
+            current.addCourse(newCourse);
+            //current.classes().Add(new Course(lbTutorCourses.SelectedValue.ToString()));
             if ( !singeltonTutorList.getInstance().Contains(current))
             {
                 singeltonTutorList.getInstance().Add(current);

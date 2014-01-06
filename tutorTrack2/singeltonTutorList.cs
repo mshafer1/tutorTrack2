@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Collections.Generic;
+//using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-using System.Linq;
-using System.Text;
+//using System.Linq;
+//using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -19,11 +19,12 @@ namespace tutorTrack2
     static class singeltonTutorList
     {
         const string TUTOR_FILE_NAME = "tutors.xml";
-        static int count = 0;
-        public static  List<Tutor> getInstance()
+        //static int count = 0;
+        public static List<Tutor> getInstance()
         {
+
             
-            if (p == null)
+           if (p == null)
             {
                 if (File.Exists(TUTOR_FILE_NAME))
                 {
@@ -36,37 +37,25 @@ namespace tutorTrack2
                 }
                 else
                 {
-                    //if (count == 0)
-                    {
-                        //count = 1;
-                        p = new List<Tutor>();
-                        MessageBox.Show("No tutors initialized", "Error");
-                        throw new Exception();
-                    }
+
+                    p = new List<Tutor>();
+                    MessageBox.Show("No tutors initialized", "Error");
+                    throw new Exception();
+
                 }
             }
-            count++;
             return p;
         }
+
         public static void saveToFile()
         {
-            using (System.IO.StreamWriter writer = new System.IO.StreamWriter("students.xml"))
+            using (StreamWriter writer = new StreamWriter("tutors.xml"))
             {
-                string xml = ToXML<List<Tutor>>(p);
-                writer.Write(xml);
-                writer.Close();
+                string toFile = xmlSerializerFunctions.ToXML(p);
+                writer.Write(toFile);
             }
         }
-        private static List<Tutor> p = null;
 
-        public static string ToXML<T>(T obj)
-        {
-            using (StringWriter stringWriter = new StringWriter(new StringBuilder()))
-            {
-                XmlSerializer xmlSerializer = new XmlSerializer(typeof(T));
-                xmlSerializer.Serialize(stringWriter, obj);
-                return stringWriter.ToString();
-            }
-        }
+        private static List<Tutor> p = null;
     }
 }

@@ -34,6 +34,7 @@ namespace tutorTrack2
             }
             catch(Exception x)
             {
+                tutors = singeltonTutorList.getInstance();
                 runAdmin();
             }
         }
@@ -71,11 +72,12 @@ namespace tutorTrack2
         {
             Tutor current = new Tutor();
             {
-                current.setId(login1.id);
-                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.getid() != current.getid());
-                if (tutors.Find(temp)!=null)
+                current.Id = login1.id;
+                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.Id != current.Id);
+                if (tutors.Find(temp)!=new Tutor())
                 {
-                    MessageBox.Show("it found you!");
+                    
+                   
                 }
                 else
                 {

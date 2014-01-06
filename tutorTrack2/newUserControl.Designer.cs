@@ -161,7 +161,6 @@
             this.lbTutorCourses.Size = new System.Drawing.Size(120, 121);
             this.lbTutorCourses.TabIndex = 0;
             this.lbTutorCourses.MouseClick += new System.Windows.Forms.MouseEventHandler(this.lbTutorCourses_MouseClick);
-            this.lbTutorCourses.SelectedIndexChanged += new System.EventHandler(this.lbTutorCourses_SelectedIndexChanged);
             // 
             // label1
             // 

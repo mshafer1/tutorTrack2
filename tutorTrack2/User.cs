@@ -6,50 +6,22 @@ using System.Threading.Tasks;
 
 namespace tutorTrack2
 {
-    public class User//: IComparable<User>
+    public class User
     {
-        protected string idString, nameString;
-        public string getid()
-        {
-            return idString;
-        }
-        public void setId(string input)
-        {
-            idString = input;
-        }
-        //public string id
-        //{
-        //    get { return this.idString; }
-        //    set { this.idString = value; }
-        //}
-        public string getName()
-        {
-            return nameString;
-        }
-        public void setName(string input)
-        {
-            nameString = input;
-        }
-        //public string name
-        //{
-        //    get { return this.nameString; }
-        //    set { this.nameString = value; }
-        //}
+        private string id, name;
 
-        //public int CompareTo(User input)
-        //{
-        //    int result;
+        public string Id
+        {
+            get { return this.id; }
+            set { this.id = value; }
+        }
 
-        //    if (input.idString == idString || input.idString == nameString)
-        //    {
-        //        result = 0;
-        //    }
-        //    else
-        //    {
-        //        result = string.Compare(input.idString, idString);
-        //    }
+        public string Name
+        {
+            get { return this.name; }
+            set { this.name = value; }
+        }
 
-        //    return result;
-        //}
+        
     }
 }

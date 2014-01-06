@@ -5,10 +5,13 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 using System.Xml.Serialization;
+using System.Runtime.Serialization;
+using System.Xml;
+
 
 namespace tutorTrack2
 {
-    public static class xmlSerializerFunctions
+    public class xmlSerializerFunctions
     {
         public static T FromXML<T>(string xml)
         {
@@ -18,7 +21,7 @@ namespace tutorTrack2
                 return (T)serializer.Deserialize(stringReader);
             }
         }
-
+        
         public static string ToXML<T>(T obj)
         {
             using (StringWriter stringWriter = new StringWriter(new StringBuilder()))

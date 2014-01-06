@@ -2,13 +2,28 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Windows.Forms;
 
 namespace tutorTrack2
 {
     public class Course: IComparable<Course>
     {
-        string commonName;
-        string idString;
+        public string commonName;
+        public string idString;
+        
+        public Course(string p)
+        {
+            commonName = p;
+        }
+        public Course(Course p)
+        {
+            commonName = p.commonName;
+            idString = p.idString;
+        }
+        public Course()
+        {
+            commonName = idString = "";
+        }
         public string id
         {
             get { return this.idString; }
@@ -23,14 +38,7 @@ namespace tutorTrack2
 
         public int CompareTo(Course input)
         {
-            int result;
-            result = string.Compare(input.commonName, commonName);
-            if (result != 0)
-            {
-                result = string.Compare(input.idString, idString);
-            }
-            return result;
+                return string.Compare(this.id, input.id);
         }
-
     }
 }
