@@ -13,8 +13,22 @@ namespace tutorTrack2
         public Tutor()
         {
             courses = new AVLTree<Course>(); //new List<Course>();
+           // clients = new Dictionary<string, Course>();
         }
+
+        public Tutor(User current)
+        {
+            // TODO: Complete member initialization
+            this.current = current;
+        }
+
+        public override userTypes getType()
+        {
+            return userTypes.Tutor;
+        }
+        public AVLTree<KeyValuePair<string,Course>> clients;//key = client name, value = course
         public AVLTree<Course> courses;
+        private User current;
         public void addCourse(Course newCourse)
         {
            // if (!courses.Contains(newCourse))

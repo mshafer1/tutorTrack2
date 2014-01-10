@@ -12,14 +12,35 @@ namespace tutorTrack2
 {
     public partial class TutorLoggedIn : UserControl
     {
+        Tutor current;
         public TutorLoggedIn()
         {
             InitializeComponent();
         }
 
+        public void setTutor(Tutor input)
+        {
+            current = input;
+        }
+
         private void btnClient_Click(object sender, EventArgs e)
         {
             //show window with client information.
+            ClientListDisplayForm clientForm1 = new ClientListDisplayForm();
+            clientForm1.clientListing1.display(current);
+            clientForm1.ShowDialog();
+        }
+
+        private void btnSchedule_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnAppointments_Click(object sender, EventArgs e)
+        {
+            TutorCoursesDisplayForm classForm = new TutorCoursesDisplayForm();
+            classForm.setTutor(current);
+            classForm.ShowDialog();
         }
     }
 }

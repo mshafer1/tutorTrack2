@@ -13,12 +13,17 @@ namespace tutorTrack2
 {
     public class xmlSerializerFunctions
     {
-        public static T FromXML<T>(string xml)
+        public static T FromXML<T>(string file)
         {
-            using (StringReader stringReader = new StringReader(xml))
+            using (StreamReader reader = new StreamReader(file))
             {
-                XmlSerializer serializer = new XmlSerializer(typeof(T));
-                return (T)serializer.Deserialize(stringReader);
+                string xml = reader.ReadToEnd();
+                reader.Close();
+                using (StringReader stringReader = new StringReader(xml))
+                {
+                    XmlSerializer serializer = new XmlSerializer(typeof(T));
+                    return (T)serializer.Deserialize(stringReader);
+                }
             }
         }
         

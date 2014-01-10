@@ -15,6 +15,9 @@ namespace tutorTrack2
     public partial class mainForm : Form
     {
         private static List<Tutor> tutors;
+        private static List<Client> clients;
+        private static List<AdminUser> admin;
+
         public mainForm()
         {
             InitializeComponent();
@@ -22,6 +25,7 @@ namespace tutorTrack2
             admin1.newUserEventHandler += this.newUser;
             admin1.timeSheetsEventHandler += this.timeSheet;
             admin1.viewLogsEventHandler += this.viewLogs;
+            newUserControl1.newUserFinishedEventHandler += this.viewLogin;
 
             //newUserControl1 = new newUserControl();
             newUserControl1.Visible = false;
@@ -30,13 +34,41 @@ namespace tutorTrack2
 
             try
             {
+                admin = singletonAdminList.getInstance();
+            }
+            catch (Exception)
+            {
+                admin = singletonAdminList.getInstance();
+                runAdmin();
+            }
+
+            try
+            {
                 tutors = singeltonTutorList.getInstance();
             }
-            catch(Exception x)
+            catch (Exception)
             {
                 tutors = singeltonTutorList.getInstance();
                 runAdmin();
             }
+
+            try
+            {
+                clients = singeltonClientList.getInstance();
+            }
+            catch (Exception)
+            {
+                clients = singeltonClientList.getInstance();
+                runAdmin();
+            }
+        }
+
+        private void viewLogin(object sender, EventArgs e)
+        {
+            this.login1.Visible = true;
+            admin1.Visible = false;
+            newUserControl1.Visible = false;
+            tutorLoggedIn1.Visible = false;
         }
 
         private void viewLogs(object sender, EventArgs e)
@@ -51,13 +83,9 @@ namespace tutorTrack2
 
         private void newUser(object sender, EventArgs e)
         {
-            
-                admin1.Visible = false;
-            
-                newUserControl1.Visible = true;
-            
-               
-            
+            admin1.Visible = false;
+
+            newUserControl1.Visible = true;
         }
 
         private void runAdmin()
@@ -70,25 +98,54 @@ namespace tutorTrack2
 
         private void loginFunction(object sender, EventArgs e)
         {
-            Tutor current = new Tutor();
+            User current = new User();
+            current.Id = login1.id;
+
+            #region check to see if user logging in is admin
+            AdminUser currentAdmin = new AdminUser(current);
+            System.Predicate<AdminUser> tempAdmin = new Predicate<AdminUser>(x => x.Id != currentAdmin.Id);
+            currentAdmin = admin.Find(tempAdmin);
+            if (currentAdmin != new AdminUser())
             {
-                current.Id = login1.id;
-                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.Id != current.Id);
-                if (tutors.Find(temp)!=new Tutor())
-                {
-                    
-                   
-                }
-                else
-                {
-                    MessageBox.Show( "Your id is not recognized as a tutor in the system. Please see system administrator for assistance.","Error");
-                }
+                runAdmin();
             }
+            #endregion
+
+            #region check to see if user logging in is a tutor
+            Tutor currentTutor = new Tutor(current);
+            System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.Id != current.Id);
+            currentTutor = tutors.Find(temp);
+            if (currentTutor != new Tutor())
+            {
+
+
+
+                if (current != new Tutor())
+                {
+                    tutorLoggedIn1.setTutor(currentTutor);
+                    tutorLoggedIn1.Visible = true;
+                    login1.Visible = false;
+                    tutorLoggedIn1.Visible = true;
+                }
+
+
+
+            }
+            #endregion
+
+            #region if not tutor or admin
+            else
+            {
+                MessageBox.Show("Your id is not recognized as a tutor in the system. Please see system administrator for assistance.", "Error");
+            }
+            #endregion
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-           
+
         }
+
+
     }
 }

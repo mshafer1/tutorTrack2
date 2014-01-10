@@ -8,25 +8,21 @@ using System.Windows.Forms;
 
 namespace tutorTrack2
 {
-    static class singeltonUsesrList
+    static class singeltonClientList
     {
-        const string User_FILE_NAME = "users.xml";
+        const string User_FILE_NAME = "clients.xml";
         public static List<Client> getInstance()
         {
             if (p == null)
             {
                 if (File.Exists(User_FILE_NAME))
                 {
-                    using (StreamReader reader = new StreamReader(User_FILE_NAME))
-                    {
-                        string xml = reader.ReadToEnd();
-                        reader.Close();
-                        p = xmlSerializerFunctions.FromXML<List<Client>>(xml);
-                    }
+                    p = xmlSerializerFunctions.FromXML<List<Client>>(User_FILE_NAME);
                 }
                 else
                 {
-                    MessageBox.Show("No tutors initialized", "Error");
+                    MessageBox.Show("No Clients initialized", "Error");
+                    p = new List<Client>();
                     throw new Exception();
                 }
             }
@@ -41,6 +37,6 @@ namespace tutorTrack2
                 writer.Close();
             }
         }
-        private static  List<Client>  p;
+        private static List<Client> p;
     }
 }

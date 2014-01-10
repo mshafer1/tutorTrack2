@@ -149,6 +149,10 @@ namespace SelfBalancedTree
         #endregion
 
         #region Public Methods
+        /// <summary>
+        /// Returns a list of type T that contains all elements in tree. 
+        /// Complexity: O(linear(N))
+        /// </summary>
         List<T> result;
         public List<T> getList()
         {
@@ -157,7 +161,6 @@ namespace SelfBalancedTree
             getList(Root);
             return result;
         }
-
         private void getList(Node<T> p)
         {
             if (p.Left != null)

@@ -2,12 +2,9 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-//using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
-//using System.Linq;
-//using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
@@ -19,29 +16,19 @@ namespace tutorTrack2
     static class singeltonTutorList
     {
         const string TUTOR_FILE_NAME = "tutors.xml";
-        //static int count = 0;
         public static List<Tutor> getInstance()
         {
-
-            
-           if (p == null)
+            if (p == null)
             {
                 if (File.Exists(TUTOR_FILE_NAME))
                 {
-                    using (StreamReader reader = new StreamReader(TUTOR_FILE_NAME))
-                    {
-                        string xml = reader.ReadToEnd();
-                        reader.Close();
-                        p = xmlSerializerFunctions.FromXML<List<Tutor>>(xml);
-                    }
+                    p = xmlSerializerFunctions.FromXML<List<Tutor>>(TUTOR_FILE_NAME);
                 }
                 else
                 {
-
                     p = new List<Tutor>();
                     MessageBox.Show("No tutors initialized", "Error");
                     throw new Exception();
-
                 }
             }
             return p;

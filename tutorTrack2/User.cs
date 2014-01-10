@@ -22,6 +22,9 @@ namespace tutorTrack2
             set { this.name = value; }
         }
 
-        
+        public virtual userTypes getType()
+        {
+            return userTypes.User;
+        }
     }
 }

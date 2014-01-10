@@ -31,6 +31,7 @@
             this.btnClient = new System.Windows.Forms.Button();
             this.btnSchedule = new System.Windows.Forms.Button();
             this.btnAppointments = new System.Windows.Forms.Button();
+            this.btnCourses = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnClient
@@ -51,6 +52,7 @@
             this.btnSchedule.TabIndex = 1;
             this.btnSchedule.Text = "Schedule";
             this.btnSchedule.UseVisualStyleBackColor = true;
+            this.btnSchedule.Click += new System.EventHandler(this.btnSchedule_Click);
             // 
             // btnAppointments
             // 
@@ -60,16 +62,28 @@
             this.btnAppointments.TabIndex = 2;
             this.btnAppointments.Text = "Appointments";
             this.btnAppointments.UseVisualStyleBackColor = true;
+            this.btnAppointments.Click += new System.EventHandler(this.btnAppointments_Click);
+            // 
+            // btnCourses
+            // 
+            this.btnCourses.Location = new System.Drawing.Point(3, 142);
+            this.btnCourses.Name = "btnCourses";
+            this.btnCourses.Size = new System.Drawing.Size(83, 39);
+            this.btnCourses.TabIndex = 2;
+            this.btnCourses.Text = "Courses";
+            this.btnCourses.UseVisualStyleBackColor = true;
+            this.btnCourses.Click += new System.EventHandler(this.btnAppointments_Click);
             // 
             // TutorLoggedIn
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCourses);
             this.Controls.Add(this.btnAppointments);
             this.Controls.Add(this.btnSchedule);
             this.Controls.Add(this.btnClient);
             this.Name = "TutorLoggedIn";
-            this.Size = new System.Drawing.Size(93, 139);
+            this.Size = new System.Drawing.Size(93, 204);
             this.ResumeLayout(false);
 
         }
@@ -79,5 +93,6 @@
         private System.Windows.Forms.Button btnClient;
         private System.Windows.Forms.Button btnSchedule;
         private System.Windows.Forms.Button btnAppointments;
+        private System.Windows.Forms.Button btnCourses;
     }
 }

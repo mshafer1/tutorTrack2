@@ -1,6 +1,6 @@
 ﻿namespace tutorTrack2
 {
-    partial class Admin
+    partial class AdminControl
     {
         /// <summary> 
         /// Required designer variable.

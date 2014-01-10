@@ -30,7 +30,6 @@
         {
             this.rbClient = new System.Windows.Forms.RadioButton();
             this.rbTutor = new System.Windows.Forms.RadioButton();
-            this.cBCourses = new System.Windows.Forms.ComboBox();
             this.cBTutors = new System.Windows.Forms.ComboBox();
             this.gBClient = new System.Windows.Forms.GroupBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -41,6 +40,8 @@
             this.lbTutorCourses = new System.Windows.Forms.ListBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.rdbAdmin = new System.Windows.Forms.RadioButton();
+            this.cBCourses = new System.Windows.Forms.ListBox();
             this.gBClient.SuspendLayout();
             this.gBtutor.SuspendLayout();
             this.SuspendLayout();
@@ -69,22 +70,11 @@
             this.rbTutor.UseVisualStyleBackColor = true;
             this.rbTutor.CheckedChanged += new System.EventHandler(this.rbTutor_CheckedChanged);
             // 
-            // cBCourses
-            // 
-            this.cBCourses.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cBCourses.FormattingEnabled = true;
-            this.cBCourses.Location = new System.Drawing.Point(13, 13);
-            this.cBCourses.Name = "cBCourses";
-            this.cBCourses.Size = new System.Drawing.Size(121, 21);
-            this.cBCourses.TabIndex = 2;
-            this.cBCourses.DropDown += new System.EventHandler(this.cBCourses_DropDown);
-            this.cBCourses.SelectedIndexChanged += new System.EventHandler(this.Courses_SelectedIndexChanged);
-            // 
             // cBTutors
             // 
             this.cBTutors.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBTutors.FormattingEnabled = true;
-            this.cBTutors.Location = new System.Drawing.Point(13, 40);
+            this.cBTutors.Location = new System.Drawing.Point(144, 36);
             this.cBTutors.Name = "cBTutors";
             this.cBTutors.Size = new System.Drawing.Size(121, 21);
             this.cBTutors.TabIndex = 2;
@@ -92,12 +82,12 @@
             // 
             // gBClient
             // 
+            this.gBClient.Controls.Add(this.cBCourses);
             this.gBClient.Controls.Add(this.label3);
             this.gBClient.Controls.Add(this.cBTutors);
-            this.gBClient.Controls.Add(this.cBCourses);
-            this.gBClient.Location = new System.Drawing.Point(4, 133);
+            this.gBClient.Location = new System.Drawing.Point(4, 132);
             this.gBClient.Name = "gBClient";
-            this.gBClient.Size = new System.Drawing.Size(299, 129);
+            this.gBClient.Size = new System.Drawing.Size(283, 129);
             this.gBClient.TabIndex = 3;
             this.gBClient.TabStop = false;
             this.gBClient.Text = " ";
@@ -105,7 +95,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(141, 20);
+            this.label3.Location = new System.Drawing.Point(12, 12);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(105, 13);
             this.label3.TabIndex = 3;
@@ -114,7 +104,7 @@
             // 
             // tBName
             // 
-            this.tBName.Location = new System.Drawing.Point(4, 52);
+            this.tBName.Location = new System.Drawing.Point(3, 79);
             this.tBName.Name = "tBName";
             this.tBName.Size = new System.Drawing.Size(177, 20);
             this.tBName.TabIndex = 4;
@@ -124,7 +114,7 @@
             // 
             // tBid
             // 
-            this.tBid.Location = new System.Drawing.Point(4, 79);
+            this.tBid.Location = new System.Drawing.Point(3, 106);
             this.tBid.Name = "tBid";
             this.tBid.Size = new System.Drawing.Size(177, 20);
             this.tBid.TabIndex = 5;
@@ -145,7 +135,7 @@
             // gBtutor
             // 
             this.gBtutor.Controls.Add(this.lbTutorCourses);
-            this.gBtutor.Location = new System.Drawing.Point(11, 133);
+            this.gBtutor.Location = new System.Drawing.Point(10, 132);
             this.gBtutor.Name = "gBtutor";
             this.gBtutor.Size = new System.Drawing.Size(279, 144);
             this.gBtutor.TabIndex = 8;
@@ -165,7 +155,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(188, 58);
+            this.label1.Location = new System.Drawing.Point(187, 85);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(95, 13);
             this.label1.TabIndex = 9;
@@ -175,19 +165,40 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(191, 85);
+            this.label2.Location = new System.Drawing.Point(190, 112);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(90, 13);
             this.label2.TabIndex = 10;
             this.label2.Text = "Must enter an id#";
             this.label2.Visible = false;
             // 
+            // rdbAdmin
+            // 
+            this.rdbAdmin.AutoSize = true;
+            this.rdbAdmin.Location = new System.Drawing.Point(4, 52);
+            this.rdbAdmin.Name = "rdbAdmin";
+            this.rdbAdmin.Size = new System.Drawing.Size(54, 17);
+            this.rdbAdmin.TabIndex = 11;
+            this.rdbAdmin.TabStop = true;
+            this.rdbAdmin.Text = "Admin";
+            this.rdbAdmin.UseVisualStyleBackColor = true;
+            this.rdbAdmin.CheckedChanged += new System.EventHandler(this.rdbAdmin_CheckedChanged);
+            // 
+            // cBCourses
+            // 
+            this.cBCourses.FormattingEnabled = true;
+            this.cBCourses.Location = new System.Drawing.Point(12, 28);
+            this.cBCourses.Name = "cBCourses";
+            this.cBCourses.Size = new System.Drawing.Size(120, 95);
+            this.cBCourses.TabIndex = 4;
+            this.cBCourses.SelectedIndexChanged += new System.EventHandler(this.Courses_SelectedIndexChanged);
+            // 
             // newUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.rdbAdmin);
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.gBtutor);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.btnOk);
             this.Controls.Add(this.tBid);
@@ -195,6 +206,7 @@
             this.Controls.Add(this.gBClient);
             this.Controls.Add(this.rbTutor);
             this.Controls.Add(this.rbClient);
+            this.Controls.Add(this.gBtutor);
             this.Name = "newUserControl";
             this.Size = new System.Drawing.Size(290, 306);
             this.Load += new System.EventHandler(this.newUserControl_Load);
@@ -210,7 +222,6 @@
 
         private System.Windows.Forms.RadioButton rbClient;
         private System.Windows.Forms.RadioButton rbTutor;
-        private System.Windows.Forms.ComboBox cBCourses;
         private System.Windows.Forms.ComboBox cBTutors;
         private System.Windows.Forms.GroupBox gBClient;
         private System.Windows.Forms.TextBox tBName;
@@ -221,5 +232,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.RadioButton rdbAdmin;
+        private System.Windows.Forms.ListBox cBCourses;
     }
 }

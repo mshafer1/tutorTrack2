@@ -29,5 +29,10 @@ namespace tutorTrack2
                 courses.Add(coursePair);
             }
         }
+
+        public override userTypes getType()
+        {
+            return userTypes.Client;
+        }
     }
 }

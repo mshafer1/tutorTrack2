@@ -17,6 +17,7 @@ namespace tutorTrack2
         private string name;
         private string id;
         List<Tutor> tutors;
+
         private void newUserControl_Load(object sender, EventArgs e)
         {
             courses = new List<string>();
@@ -43,6 +44,7 @@ namespace tutorTrack2
                 tutors = singeltonTutorList.getInstance();
             }
             courses = courses.Distinct().ToList<string>();
+            courses.Add("Select a Course");
             courses.Add("New");
             cBCourses.DataSource = courses;
             lbTutorCourses.DataSource = courses;
@@ -56,13 +58,13 @@ namespace tutorTrack2
             gBtutor.Parent = gBClient.Parent = this;
             rbClient.Select();
         }
+
         public newUserControl()
         {
             InitializeComponent();
             //courses = new List<string>();
-            
-        }
 
+        }
 
         private void rbTutor_CheckedChanged(object sender, EventArgs e)
         {
@@ -119,11 +121,23 @@ namespace tutorTrack2
                 {
                     addClient();
                 }
-                else
+                else if (rbTutor.Checked)
                 {
-                    addTutor();
+                    if (lbTutorCourses.SelectedItem.ToString() != "New")
+                    {
+                        addTutor();
+                    }
+                    else
+                    {
+
+                    }
+                }
+                else if (rdbAdmin.Checked)
+                {
+                    addAdmin();
                 }
                 this.Visible = false;
+                newUserFinishedEventHandler(sender, e);
             }
             else
             {
@@ -133,21 +147,50 @@ namespace tutorTrack2
             }
         }
 
+        public EventHandler newUserEventHandler;
 
+        public EventHandler newUserFinishedEventHandler;
+        public delegate void newUserEventHandlerDelegate(object sender, EventArgs e);
+        public void newUserFinishedEvent(object sender, EventArgs e)
+        {
+            EventHandler handler = newUserFinishedEventHandler;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
 
         #region client
         private void Courses_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (courses.Count != 0 && courses.ElementAt(0) != "Select a course")
+            if (courses.Count != 0 && cBCourses.SelectedItem.ToString() != "Select a Course")
             {
-                cBTutors.Visible = true;
-                try
+                if (cBCourses.SelectedItem.ToString() == "New")
                 {
-                    tutorNames = (from tutors in singeltonTutorList.getInstance()
-                                  select tutors.Name).ToList<String>();
+                    NewClassForm newClassForm1 = new NewClassForm();
+                    newClassForm1.ShowDialog();
+                    if (newClassForm1.newClass)
+                    {
+                        courses.Add(newClassForm1.name + ", " + newClassForm1.id);
+                    }
+
+                    //lbTutorCourses.ClearSelected();
+                    cBCourses.DataSource = null;
+                    cBCourses.DataSource = courses;
+                    //cBCourses.SelectedIndex = courses.Count - 1;
                 }
-                catch (Exception)
+                else
                 {
+
+                    cBTutors.Visible = true;
+                    try
+                    {
+                        tutorNames = (from tutors in singeltonTutorList.getInstance()
+                                      select tutors.Name).ToList<String>();
+                    }
+                    catch (Exception)
+                    {
+                    }
                 }
             }
         }
@@ -157,34 +200,25 @@ namespace tutorTrack2
             //set tutor name for client and associate with tutor.
         }
 
-        private void cBCourses_DropDown(object sender, EventArgs e)
-        {
-
-        }
-
         void addClient()
         {
             Client current = new Client();
             current.Id = id;
             current.Name = (name);
-            if (!singeltonUsesrList.getInstance().Contains(current))
+            if (!singeltonClientList.getInstance().Contains(current))
             {
-
-                singeltonUsesrList.getInstance().Add(current);
+                singeltonClientList.getInstance().Add(current);
             }
         }
 
         #endregion
 
-
         #region tutor
-
 
         private void lbTutorCourses_MouseClick(object sender, MouseEventArgs e)
         {
             if (lbTutorCourses.SelectedItem != null)
             {
-                string temp = lbTutorCourses.SelectedItem.ToString();
                 if (lbTutorCourses.SelectedItem.ToString() == "New")
                 {
                     NewClassForm newClassForm1 = new NewClassForm();
@@ -193,7 +227,7 @@ namespace tutorTrack2
                     {
                         courses.Add(newClassForm1.name + ", " + newClassForm1.id);
                     }
-                    
+
                     //lbTutorCourses.ClearSelected();
                     lbTutorCourses.DataSource = null;
                     lbTutorCourses.DataSource = courses;
@@ -208,15 +242,36 @@ namespace tutorTrack2
             current.Id = (id);
             Course newCourse = new Course();
             newCourse.id = lbTutorCourses.SelectedValue.ToString().Substring(0, lbTutorCourses.SelectedValue.ToString().IndexOf(','));
-            newCourse.name = lbTutorCourses.SelectedValue.ToString().Substring(lbTutorCourses.SelectedValue.ToString().IndexOf(',')+2);
+            newCourse.name = lbTutorCourses.SelectedValue.ToString().Substring(lbTutorCourses.SelectedValue.ToString().IndexOf(',') + 2);
             current.addCourse(newCourse);
             //current.classes().Add(new Course(lbTutorCourses.SelectedValue.ToString()));
-            if ( !singeltonTutorList.getInstance().Contains(current))
+            if (!singeltonTutorList.getInstance().Contains(current))
             {
                 singeltonTutorList.getInstance().Add(current);
                 singeltonTutorList.saveToFile();
             }
         }
+        #endregion
+
+        #region admin
+        private void rdbAdmin_CheckedChanged(object sender, EventArgs e)
+        {
+            if (rdbAdmin.Checked)
+            {
+                gBClient.Visible = false;
+                gBtutor.Visible = false;
+            }
+        }
+
+        private void addAdmin()
+        {
+            AdminUser current = new AdminUser();
+            current.Id = id;
+            current.Name = (name);
+            singletonAdminList.getInstance().Add(current);
+            singletonAdminList.saveInstance();
+        }
+
         #endregion
     }
 }

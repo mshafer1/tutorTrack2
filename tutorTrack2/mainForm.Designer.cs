@@ -29,8 +29,9 @@
         private void InitializeComponent()
         {
             this.newUserControl1 = new tutorTrack2.newUserControl();
-            this.admin1 = new tutorTrack2.Admin();
+            this.admin1 = new tutorTrack2.AdminControl();
             this.login1 = new tutorTrack2.login();
+            this.tutorLoggedIn1 = new tutorTrack2.TutorLoggedIn();
             this.SuspendLayout();
             // 
             // newUserControl1
@@ -56,11 +57,20 @@
             this.login1.Size = new System.Drawing.Size(269, 50);
             this.login1.TabIndex = 0;
             // 
+            // tutorLoggedIn1
+            // 
+            this.tutorLoggedIn1.Location = new System.Drawing.Point(107, 30);
+            this.tutorLoggedIn1.Name = "tutorLoggedIn1";
+            this.tutorLoggedIn1.Size = new System.Drawing.Size(93, 185);
+            this.tutorLoggedIn1.TabIndex = 3;
+            this.tutorLoggedIn1.Visible = false;
+            // 
             // mainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(298, 313);
+            this.ClientSize = new System.Drawing.Size(319, 326);
+            this.Controls.Add(this.tutorLoggedIn1);
             this.Controls.Add(this.newUserControl1);
             this.Controls.Add(this.admin1);
             this.Controls.Add(this.login1);
@@ -76,8 +86,9 @@
         #endregion
 
         private login login1;
-        private Admin admin1;
+        private AdminControl admin1;
         private newUserControl newUserControl1;
+        private TutorLoggedIn tutorLoggedIn1;
 
     }
 }
