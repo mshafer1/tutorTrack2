@@ -40,5 +40,11 @@ namespace tutorTrack2
         {
                 return string.Compare(this.id, input.id);
         }
+
+        public override string ToString()
+        {
+            string result = idString + "," + commonName;
+            return result;
+        }
     }
 }

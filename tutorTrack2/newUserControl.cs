@@ -46,6 +46,21 @@ namespace tutorTrack2
             courses = courses.Distinct().ToList<string>();
             courses.Add("Select a Course");
             courses.Add("New");
+            var tutorCoursesAvail = (from tutor in singeltonTutorList.getInstance()
+                                 select tutor.courses.getList());
+            List<Course> temp = new List<Course>();
+            foreach (var courseList in tutorCoursesAvail)
+            {
+                foreach (var course in courseList)
+                {
+                    temp.Add(course);
+                }
+            }
+            temp.Distinct();
+            foreach (var course in temp)
+            {
+                courses.Add(course.ToString());
+            }
             cBCourses.DataSource = courses;
             lbTutorCourses.DataSource = courses;
 
@@ -185,8 +200,8 @@ namespace tutorTrack2
                     cBTutors.Visible = true;
                     try
                     {
-                        tutorNames = (from tutors in singeltonTutorList.getInstance()
-                                      select tutors.Name).ToList<String>();
+                        //tutorNames = (from tutors in singeltonTutorList.getInstance()
+                                      //select tutors.Name).ToList<String>();
                     }
                     catch (Exception)
                     {
