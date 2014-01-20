@@ -11,11 +11,11 @@ namespace tutorTrack2
     {
         private User current;
         public AVLTree<Client> clients;
-        public AVLTree<Course> courses;
+        public List<Course> courses;
 
         public Tutor()
         {
-            courses = new AVLTree<Course>(); //new List<Course>();
+            courses = new List<Course>(); //new List<Course>();
         }
 
         public static Tutor FindTutor(string input)

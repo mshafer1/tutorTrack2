@@ -6,7 +6,7 @@ using System.Windows.Forms;
 
 namespace tutorTrack2
 {
-    public class Course : IComparable<Course>
+    public class Course
     {
         public string commonName;
         public string idString;
@@ -36,10 +36,10 @@ namespace tutorTrack2
             set { this.commonName = value; }
         }
 
-        public int CompareTo(Course input)
-        {
-            return string.Compare(this.id, input.id);
-        }
+        //public override int CompareTo(Course input)
+        //{
+        //    return string.Compare(this.id, input.id);
+        //}
 
         public override string ToString()
         {

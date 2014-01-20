@@ -66,6 +66,7 @@
             this.btnShiftLeft.TabIndex = 1;
             this.btnShiftLeft.Text = "<<";
             this.btnShiftLeft.UseVisualStyleBackColor = true;
+            this.btnShiftLeft.Click += new System.EventHandler(this.btnShiftLeft_Click);
             // 
             // btnShiftRight
             // 
@@ -75,6 +76,7 @@
             this.btnShiftRight.TabIndex = 1;
             this.btnShiftRight.Text = ">>";
             this.btnShiftRight.UseVisualStyleBackColor = true;
+            this.btnShiftRight.Click += new System.EventHandler(this.btnShiftRight_Click);
             // 
             // label1
             // 
