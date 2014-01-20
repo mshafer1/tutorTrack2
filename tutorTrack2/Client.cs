@@ -5,7 +5,7 @@ using System.Text;
 
 namespace tutorTrack2
 {
-    public class Client: User
+    public class Client : User
     {
         public Client(string name, string id)
         {
@@ -30,7 +30,7 @@ namespace tutorTrack2
 
         public Tutor tutor { get; set; }
 
-        
+
 
         public override userTypes getType()
         {

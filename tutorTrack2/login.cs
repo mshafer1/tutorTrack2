@@ -82,5 +82,10 @@ namespace tutorTrack2
         {
             this.Visible = false;
         }
+
+        internal void Reset()
+        {
+            IDField.Text = "";
+        }
     }
 }

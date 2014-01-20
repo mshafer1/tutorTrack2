@@ -6,11 +6,11 @@ using System.Windows.Forms;
 
 namespace tutorTrack2
 {
-    public class Course: IComparable<Course>
+    public class Course : IComparable<Course>
     {
         public string commonName;
         public string idString;
-        
+
         public Course(string p)
         {
             commonName = p;
@@ -38,7 +38,7 @@ namespace tutorTrack2
 
         public int CompareTo(Course input)
         {
-                return string.Compare(this.id, input.id);
+            return string.Compare(this.id, input.id);
         }
 
         public override string ToString()
@@ -50,8 +50,8 @@ namespace tutorTrack2
         public static Course FromString(string input)
         {
             Course result = new Course();
-            result.id = input.Substring(0,input.IndexOf(','));
-            result.name = input.Substring(input.IndexOf(',')+1);
+            result.id = input.Substring(0, input.IndexOf(','));
+            result.name = input.Substring(input.IndexOf(',') + 1);
             return result;
         }
     }

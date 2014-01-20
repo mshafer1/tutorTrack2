@@ -54,11 +54,11 @@ namespace tutorTrack2
 
             try
             {
-                 courseList = singletonCourseList.getInstance().ToList<Course>();
-                 foreach (var course in courseList)
-                 {
-                     courses.Add(course.ToString());
-                 }
+                courseList = singletonCourseList.getInstance().ToList<Course>();
+                foreach (var course in courseList)
+                {
+                    courses.Add(course.ToString());
+                }
             }
             catch (Exception)
             {
@@ -75,7 +75,7 @@ namespace tutorTrack2
         public newUserControl()
         {
             InitializeComponent();
-            
+
         }
 
         private void rbTutor_CheckedChanged(object sender, EventArgs e)
@@ -199,9 +199,9 @@ namespace tutorTrack2
                     Course current = Course.FromString(cBCourses.SelectedItem.ToString());
                     try
                     {
-                        //tutorNames = (from tutor in singeltonTutorList.getInstance()
-                                      //where tutor.courses.Contains(Course.FromString(cBCourses.SelectedItem.ToString()))
-                                      //select tutor.Name).ToList<String>();
+                        tutorNames = (from tutor in singeltonTutorList.getInstance()
+                                      where tutor.courses.Contains(Course.FromString(cBCourses.SelectedItem.ToString()))
+                                      select tutor.Name).ToList<String>();
                     }
                     catch (Exception exception)
                     {
@@ -215,7 +215,7 @@ namespace tutorTrack2
         {
             if (cbTutors.SelectedIndex > 0 && cbTutors.SelectedText.Length > 0)
             {
-                //currentTutor = Tutor.FindTutor(cbTutors.SelectedText);
+                currentTutor = Tutor.FindTutor(cbTutors.SelectedText);
             }
             else
             {
@@ -225,16 +225,17 @@ namespace tutorTrack2
 
         void addClient()
         {
-            current = new Client(name,id);
+            current = new Client(name, id);
             //current.course = Course.FromString(cBCourses.SelectedValue.ToString());
-            //currentTutor.addClient(current);
+            //currentTutor.addClient(current);\
+            singeltonClientList.getInstance().Add(current);
             singeltonClientList.saveToFile();
         }
 
         #endregion
 
         #region tutor
-        
+
         private void addTutor()
         {
             currentTutor = new Tutor();

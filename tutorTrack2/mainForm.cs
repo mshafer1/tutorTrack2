@@ -104,41 +104,42 @@ namespace tutorTrack2
             #region check to see if user logging in is admin
             AdminUser currentAdmin = new AdminUser(current);
             System.Predicate<AdminUser> tempAdmin = new Predicate<AdminUser>(x => x.Id != currentAdmin.Id);
-            currentAdmin = admin.Find(tempAdmin);
-            if (currentAdmin != new AdminUser())
+            currentAdmin = admin.Find(input => input.Id == currentAdmin.Id);
+            if (currentAdmin != null)
             {
                 runAdmin();
             }
             #endregion
-
-            #region check to see if user logging in is a tutor
-            Tutor currentTutor = new Tutor(current);
-            System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.Id != current.Id);
-            currentTutor = tutors.Find(temp);
-            if (currentTutor != new Tutor())
-            {
-
-
-
-                if (current != new Tutor())
-                {
-                    tutorLoggedIn1.setTutor(currentTutor);
-                    tutorLoggedIn1.Visible = true;
-                    login1.Visible = false;
-                    tutorLoggedIn1.Visible = true;
-                }
-
-
-
-            }
-            #endregion
-
-            #region if not tutor or admin
             else
             {
-                MessageBox.Show("Your id is not recognized as a tutor in the system. Please see system administrator for assistance.", "Error");
-            }
+                #region check to see if user logging in is a tutor
+                Tutor currentTutor = new Tutor(current);
+                System.Predicate<Tutor> temp = new Predicate<Tutor>(x => x.Id == current.Id);
+                currentTutor = tutors.Find(temp);
+                if (currentTutor != null)
+                {
+
+                    if (current != new Tutor())
+                    {
+                        tutorLoggedIn1.setTutor(currentTutor);
+                        tutorLoggedIn1.Visible = true;
+                        login1.Visible = false;
+                        tutorLoggedIn1.Visible = true;
+                    }
+
+                }
             #endregion
+                #region if not tutor or admin
+                else
+                {
+                    login1.Visible = true;
+                    login1.Reset();
+                    MessageBox.Show("Your id is not recognized as a tutor in the system. Please see system administrator for assistance.", "Error");
+                }
+                #endregion
+            }
+
+            
         }
 
         private void Form1_Load(object sender, EventArgs e)

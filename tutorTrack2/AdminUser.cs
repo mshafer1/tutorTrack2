@@ -13,7 +13,8 @@ namespace tutorTrack2
         public AdminUser(User current)
         {
             // TODO: Complete member initialization
-            this.current = current;
+            Id = current.Id;
+            Name = current.Name;
         }
 
         public AdminUser()
