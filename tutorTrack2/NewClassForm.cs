@@ -41,6 +41,15 @@ namespace tutorTrack2
             {
                 newClass = true;
                 name = newClass1.txbName.Text;
+
+                List<Course>courses = singletonCourseList.getInstance();
+                Course current = new Course();
+                current.name = name;
+                current.id = id;
+                if(!courses.Contains(current))
+                {
+                    courses.Add(current);
+                }
                 this.Close();
             }
             else

@@ -35,7 +35,7 @@
             // 
             // newClass1
             // 
-            this.newClass1.Location = new System.Drawing.Point(12, 12);
+            this.newClass1.Location = new System.Drawing.Point(12, 11);
             this.newClass1.Name = "newClass1";
             this.newClass1.Size = new System.Drawing.Size(301, 79);
             this.newClass1.TabIndex = 0;

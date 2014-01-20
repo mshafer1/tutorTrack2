@@ -30,17 +30,10 @@ namespace tutorTrack2
             clientForm1.clientListing1.display(current);
             clientForm1.ShowDialog();
         }
-
-        private void btnSchedule_Click(object sender, EventArgs e)
+        
+        private void btnAppointment_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void btnAppointments_Click(object sender, EventArgs e)
-        {
-            TutorCoursesDisplayForm classForm = new TutorCoursesDisplayForm();
-            classForm.setTutor(current);
-            classForm.ShowDialog();
         }
     }
 }

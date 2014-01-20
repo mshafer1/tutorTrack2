@@ -61,7 +61,7 @@
             // 
             this.tutorLoggedIn1.Location = new System.Drawing.Point(107, 30);
             this.tutorLoggedIn1.Name = "tutorLoggedIn1";
-            this.tutorLoggedIn1.Size = new System.Drawing.Size(93, 185);
+            this.tutorLoggedIn1.Size = new System.Drawing.Size(93, 136);
             this.tutorLoggedIn1.TabIndex = 3;
             this.tutorLoggedIn1.Visible = false;
             // 

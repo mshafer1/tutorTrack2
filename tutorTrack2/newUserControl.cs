@@ -12,73 +12,70 @@ namespace tutorTrack2
 {
     public partial class newUserControl : UserControl
     {
-        List<string> courses;
+        List<String> courses;
         List<string> tutorNames;
         private string name;
         private string id;
         List<Tutor> tutors;
+        List<Course> courseList;
+        List<Client> clients;
+        Tutor currentTutor;
 
         private void newUserControl_Load(object sender, EventArgs e)
         {
+            rbClient.Select();
             courses = new List<string>();
+
             try
             {
                 tutors = singeltonTutorList.getInstance();
-                if (tutors.Count != 0)
-                {
-                    var coursesList = singletonAvailClassesList.getInstance();
-
-                    foreach (Course course in coursesList)
-                    {
-                        string line = course.commonName + ", " + course.id;
-                        if (!courses.Contains(line))
-                        {
-                            courses.Add(line);
-                        }
-                    }
-                    //courses.Add("testing");
-                }
+                tutorNames = (from tutor in tutors
+                              select tutor.Name).ToList<string>();
             }
             catch (Exception)
             {
                 tutors = singeltonTutorList.getInstance();
+                rbTutor.Select();
+                tutorNames = new List<string>();
             }
-            courses = courses.Distinct().ToList<string>();
-            courses.Add("Select a Course");
+
+            tutorNames.Add("Select a Tutor");
+
+            try
+            {
+                clients = singeltonClientList.getInstance();
+            }
+            catch (Exception)
+            {
+                clients = singeltonClientList.getInstance();
+            }
+
             courses.Add("New");
-            var tutorCoursesAvail = (from tutor in singeltonTutorList.getInstance()
-                                 select tutor.courses.getList());
-            List<Course> temp = new List<Course>();
-            foreach (var courseList in tutorCoursesAvail)
+
+            try
             {
-                foreach (var course in courseList)
-                {
-                    temp.Add(course);
-                }
+                 courseList = singletonCourseList.getInstance().ToList<Course>();
+                 foreach (var course in courseList)
+                 {
+                     courses.Add(course.ToString());
+                 }
             }
-            temp.Distinct();
-            foreach (var course in temp)
+            catch (Exception)
             {
-                courses.Add(course.ToString());
+                courseList = singletonCourseList.getInstance();
             }
-            cBCourses.DataSource = courses;
-            lbTutorCourses.DataSource = courses;
+
 
             id = name = "";
 
-            tutorNames = new List<string>();
-            tutorNames.Add("Select a Tutor");
-            cBTutors.DataSource = tutorNames;
-            cBTutors.Visible = false;
-            gBtutor.Parent = gBClient.Parent = this;
-            rbClient.Select();
+
+
         }
 
         public newUserControl()
         {
             InitializeComponent();
-            //courses = new List<string>();
-
+            
         }
 
         private void rbTutor_CheckedChanged(object sender, EventArgs e)
@@ -86,11 +83,7 @@ namespace tutorTrack2
             if (rbTutor.Checked)
             {
                 gBClient.Visible = false;
-                gBtutor.Visible = true;
-                lbTutorCourses.DataSource = courses;
-                gBtutor.Focus();
             }
-
         }
 
         private void rbClient_CheckedChanged(object sender, EventArgs e)
@@ -98,7 +91,18 @@ namespace tutorTrack2
             if (rbClient.Checked)
             {
                 gBClient.Visible = true;
-                gBtutor.Visible = false;
+                btnOk.TabIndex = 7;
+
+                cBCourses.TabIndex = 5;
+                cbTutors.TabIndex = 6;
+                cBCourses.TabStop = true;
+                cbTutors.TabStop = true;
+            }
+            else
+            {
+                cBCourses.TabStop = false;
+                cbTutors.TabStop = false;
+                btnOk.TabIndex = 5;
             }
         }
 
@@ -138,14 +142,7 @@ namespace tutorTrack2
                 }
                 else if (rbTutor.Checked)
                 {
-                    if (lbTutorCourses.SelectedItem.ToString() != "New")
-                    {
-                        addTutor();
-                    }
-                    else
-                    {
-
-                    }
+                    addTutor();
                 }
                 else if (rdbAdmin.Checked)
                 {
@@ -161,7 +158,7 @@ namespace tutorTrack2
                 label3.Visible = cBCourses.SelectedItem.ToString() == "Select a course";
             }
         }
-
+        #region new User Event
         public EventHandler newUserEventHandler;
 
         public EventHandler newUserFinishedEventHandler;
@@ -174,8 +171,11 @@ namespace tutorTrack2
                 handler(sender, e);
             }
         }
+        #endregion
 
         #region client
+
+        Client current;
         private void Courses_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (courses.Count != 0 && cBCourses.SelectedItem.ToString() != "Select a Course")
@@ -184,27 +184,28 @@ namespace tutorTrack2
                 {
                     NewClassForm newClassForm1 = new NewClassForm();
                     newClassForm1.ShowDialog();
-                    if (newClassForm1.newClass)
+                    courses.Clear();
+                    courses.Add("New");
+                    foreach (var course in courseList)
                     {
-                        courses.Add(newClassForm1.name + ", " + newClassForm1.id);
+                        courses.Add(course.ToString());
                     }
-
-                    //lbTutorCourses.ClearSelected();
                     cBCourses.DataSource = null;
                     cBCourses.DataSource = courses;
-                    //cBCourses.SelectedIndex = courses.Count - 1;
+                    cBCourses.SelectedIndex = courses.Count() - 1;
                 }
                 else
                 {
-
-                    cBTutors.Visible = true;
+                    Course current = Course.FromString(cBCourses.SelectedItem.ToString());
                     try
                     {
-                        //tutorNames = (from tutors in singeltonTutorList.getInstance()
-                                      //select tutors.Name).ToList<String>();
+                        //tutorNames = (from tutor in singeltonTutorList.getInstance()
+                                      //where tutor.courses.Contains(Course.FromString(cBCourses.SelectedItem.ToString()))
+                                      //select tutor.Name).ToList<String>();
                     }
-                    catch (Exception)
+                    catch (Exception exception)
                     {
+                        throw exception;
                     }
                 }
             }
@@ -212,59 +213,35 @@ namespace tutorTrack2
 
         private void Tutors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //set tutor name for client and associate with tutor.
+            if (cbTutors.SelectedIndex > 0 && cbTutors.SelectedText.Length > 0)
+            {
+                //currentTutor = Tutor.FindTutor(cbTutors.SelectedText);
+            }
+            else
+            {
+                lblTutorSelectMust.Visible = true;
+            }
         }
 
         void addClient()
         {
-            Client current = new Client();
-            current.Id = id;
-            current.Name = (name);
-            if (!singeltonClientList.getInstance().Contains(current))
-            {
-                singeltonClientList.getInstance().Add(current);
-            }
+            current = new Client(name,id);
+            //current.course = Course.FromString(cBCourses.SelectedValue.ToString());
+            //currentTutor.addClient(current);
+            singeltonClientList.saveToFile();
         }
 
         #endregion
 
         #region tutor
-
-        private void lbTutorCourses_MouseClick(object sender, MouseEventArgs e)
-        {
-            if (lbTutorCourses.SelectedItem != null)
-            {
-                if (lbTutorCourses.SelectedItem.ToString() == "New")
-                {
-                    NewClassForm newClassForm1 = new NewClassForm();
-                    newClassForm1.ShowDialog();
-                    if (newClassForm1.newClass)
-                    {
-                        courses.Add(newClassForm1.name + ", " + newClassForm1.id);
-                    }
-
-                    //lbTutorCourses.ClearSelected();
-                    lbTutorCourses.DataSource = null;
-                    lbTutorCourses.DataSource = courses;
-                }
-            }
-        }
-
+        
         private void addTutor()
         {
-            Tutor current = new Tutor();
-            current.Name = (name);
-            current.Id = (id);
-            Course newCourse = new Course();
-            newCourse.id = lbTutorCourses.SelectedValue.ToString().Substring(0, lbTutorCourses.SelectedValue.ToString().IndexOf(','));
-            newCourse.name = lbTutorCourses.SelectedValue.ToString().Substring(lbTutorCourses.SelectedValue.ToString().IndexOf(',') + 2);
-            current.addCourse(newCourse);
-            //current.classes().Add(new Course(lbTutorCourses.SelectedValue.ToString()));
-            if (!singeltonTutorList.getInstance().Contains(current))
-            {
-                singeltonTutorList.getInstance().Add(current);
-                singeltonTutorList.saveToFile();
-            }
+            currentTutor = new Tutor();
+            currentTutor.Name = name;
+            currentTutor.Id = id;
+            singeltonTutorList.getInstance().Add(currentTutor);
+            singeltonTutorList.saveToFile();
         }
         #endregion
 
@@ -274,7 +251,6 @@ namespace tutorTrack2
             if (rdbAdmin.Checked)
             {
                 gBClient.Visible = false;
-                gBtutor.Visible = false;
             }
         }
 
@@ -288,5 +264,7 @@ namespace tutorTrack2
         }
 
         #endregion
+
+
     }
 }

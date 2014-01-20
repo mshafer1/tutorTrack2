@@ -9,46 +9,57 @@ namespace tutorTrack2
 {
     public class Tutor : User
     {
-        //public string id, name;
+        private User current;
+        public AVLTree<Client> clients;
+        public AVLTree<Course> courses;
+
         public Tutor()
         {
-            courses = new AVLTree<Course>(); //new List<Course>();
-           // clients = new Dictionary<string, Course>();
+            //courses = new AVLTree<Course>(); //new List<Course>();
         }
 
+       // public static Tutor FindTutor(string input)
+        //{
+        //    var tutorList = singeltonTutorList.getInstance();
+        //    foreach(var tutor in tutorList)
+        //    {
+        //        if (tutor.Name == input)
+        //        {
+        //            return tutor;
+        //        }
+        //    }
+        //    throw new Exception();
+        //}
+        
         public Tutor(User current)
-        {
-            // TODO: Complete member initialization
+        { 
             this.current = current;
+            if (current.getType() == userTypes.Tutor)
+            {
+                this.Id = current.Id;
+                this.Name = current.Name;
+            }
         }
 
         public override userTypes getType()
         {
             return userTypes.Tutor;
         }
-        public AVLTree<KeyValuePair<string,Course>> clients;//key = client name, value = course
-        public AVLTree<Course> courses;
-        private User current;
+
         public void addCourse(Course newCourse)
         {
-           // if (!courses.Contains(newCourse))
-            {
-                courses.Add(newCourse);
-            }
+            //if (!courses.Contains(newCourse))
+            //{
+            //    courses.Add(newCourse);
+            //}
         }
-        public List<Course> classes()
-        {
-            List<Course> result = new List<Course>();
-            List<Course> courseList = courses.getList();
 
-            foreach (var c in courseList)
-            {
-                if (!result.Contains(c))
-                {
-                    result.Add(c);
-                }
-            }
-            return result;
-        }
+        //public void addClient(Client newClient)
+        //{
+        //    if (!clients.Contains(newClient))
+        //    {
+        //        clients.Add(newClient);
+        //    }
+        //}
     }
 }

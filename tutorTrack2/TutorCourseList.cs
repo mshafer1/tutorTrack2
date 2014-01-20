@@ -22,19 +22,19 @@ namespace tutorTrack2
             current = input;
             lblCourseID.Text = "";
             lblCourseName.Text = "";
-            List<Course> courses = current.courses.getList();
-            var courseIds = from course in courses
-                            select course.id;
-            foreach (string id in courseIds)
-            {
-                lblCourseID.Text += id + "\n";
-            }
-            var courseNames = from course in courses
-                            select course.id;
-            foreach (string name in courseNames)
-            {
-                lblCourseName.Text += name + "\n";
-            }
+            //List<Course> courses = current.courses.getList();
+            //var courseIds = from course in courses
+            //                select course.id;
+            //foreach (string id in courseIds)
+            //{
+            //    lblCourseID.Text += id + "\n";
+            //}
+            //var courseNames = from course in courses
+            //                select course.id;
+            //foreach (string name in courseNames)
+            //{
+            //    lblCourseName.Text += name + "\n";
+            //}
         }
         public void display()
         {

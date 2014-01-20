@@ -7,28 +7,30 @@ namespace tutorTrack2
 {
     public class Client: User
     {
-        private List<KeyValuePair<Course, string>> courses;
+        public Client(string name, string id)
+        {
+            ContactInfoForm current = new ContactInfoForm();
+            current.ShowDialog();
+            contactInfo = current.contactInfo;
+            this.Name = name;
+            this.Id = id;
+        }
+
+        public Client(ContactInfo input)
+        {
+            contactInfo = input;
+        }
+
         public Client()
         {
-            courses = new List<KeyValuePair<Course, string>>();
         }
+        internal ContactInfo contactInfo { get; set; }
 
-        public void addCourse(KeyValuePair<Course, string> course)
-        {
-            if (!courses.Contains(course))
-            {
-                courses.Add(course);
-            }
-        }
+        internal Course course { get; set; }
 
-        public void addCourse(Course course, string tutorName)
-        {
-            KeyValuePair<Course, string> coursePair = new KeyValuePair<Course, string>(course,tutorName);
-            if (!courses.Contains(coursePair))
-            {
-                courses.Add(coursePair);
-            }
-        }
+        public Tutor tutor { get; set; }
+
+        
 
         public override userTypes getType()
         {

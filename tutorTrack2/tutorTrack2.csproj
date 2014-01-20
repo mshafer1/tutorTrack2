@@ -65,6 +65,13 @@
     <Compile Include="clientListing.Designer.cs">
       <DependentUpon>clientListing.cs</DependentUpon>
     </Compile>
+    <Compile Include="ContactInfo.cs" />
+    <Compile Include="ContactInfoForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ContactInfoForm.Designer.cs">
+      <DependentUpon>ContactInfoForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Course.cs" />
     <Compile Include="EditClasses.cs">
       <SubType>UserControl</SubType>
@@ -96,12 +103,6 @@
     <Compile Include="NewClassForm.Designer.cs">
       <DependentUpon>NewClassForm.cs</DependentUpon>
     </Compile>
-    <Compile Include="newCourse.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="newCourse.Designer.cs">
-      <DependentUpon>newCourse.cs</DependentUpon>
-    </Compile>
     <Compile Include="newUserControl.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -112,8 +113,8 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="singeltonTutorList.cs" />
     <Compile Include="singletonAdminList.cs" />
-    <Compile Include="singletonAvailClassesMap.cs" />
-    <Compile Include="SingletonUserList.cs" />
+    <Compile Include="singletonCourseList.cs" />
+    <Compile Include="SingletonClientList.cs" />
     <Compile Include="Tutor.cs" />
     <Compile Include="TutorCourseList.cs">
       <SubType>UserControl</SubType>
@@ -145,6 +146,9 @@
     <EmbeddedResource Include="clientListing.resx">
       <DependentUpon>clientListing.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ContactInfoForm.resx">
+      <DependentUpon>ContactInfoForm.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="EditClasses.resx">
       <DependentUpon>EditClasses.cs</DependentUpon>
     </EmbeddedResource>
@@ -159,9 +163,6 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NewClassForm.resx">
       <DependentUpon>NewClassForm.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="newCourse.resx">
-      <DependentUpon>newCourse.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="newUserControl.resx">
       <DependentUpon>newUserControl.cs</DependentUpon>

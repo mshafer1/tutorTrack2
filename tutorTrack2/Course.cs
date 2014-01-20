@@ -43,7 +43,15 @@ namespace tutorTrack2
 
         public override string ToString()
         {
-            string result = idString + "," + commonName;
+            string result = idString + ", " + commonName;
+            return result;
+        }
+
+        public static Course FromString(string input)
+        {
+            Course result = new Course();
+            result.id = input.Substring(0,input.IndexOf(','));
+            result.name = input.Substring(input.IndexOf(',')+1);
             return result;
         }
     }

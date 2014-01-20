@@ -20,7 +20,7 @@ namespace tutorTrack2
         public void load(Tutor input)
         {
             current = input;
-            lBCurrent.DataSource = current.classes();
+            //lBCurrent.DataSource = current.courses;
 
         }
     }
