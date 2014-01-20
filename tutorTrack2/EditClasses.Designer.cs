@@ -53,10 +53,10 @@
             this.lBOptions.Location = new System.Drawing.Point(0, 18);
             this.lBOptions.Name = "lBOptions";
             this.lBOptions.Size = new System.Drawing.Size(170, 199);
-            this.lBOptions.Sorted = true;
             this.lBOptions.TabIndex = 0;
             this.lBOptions.TabStop = false;
             this.lBOptions.UseTabStops = false;
+            this.lBOptions.SelectedIndexChanged += new System.EventHandler(this.lBOptions_SelectedIndexChanged);
             // 
             // btnShiftLeft
             // 

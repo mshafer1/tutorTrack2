@@ -28,18 +28,18 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txbName = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txbId = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txbName = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // textBox1
+            // txbId
             // 
-            this.txbName.Location = new System.Drawing.Point(92, 16);
-            this.txbName.Name = "textBox1";
-            this.txbName.Size = new System.Drawing.Size(194, 20);
-            this.txbName.TabIndex = 0;
+            this.txbId.Location = new System.Drawing.Point(92, 16);
+            this.txbId.Name = "txbId";
+            this.txbId.Size = new System.Drawing.Size(194, 20);
+            this.txbId.TabIndex = 0;
             // 
             // label1
             // 
@@ -50,12 +50,12 @@
             this.label1.TabIndex = 1;
             this.label1.Text = "Course ID";
             // 
-            // textBox2
+            // txbName
             // 
-            this.txbId.Location = new System.Drawing.Point(92, 42);
-            this.txbId.Name = "textBox2";
-            this.txbId.Size = new System.Drawing.Size(194, 20);
-            this.txbId.TabIndex = 2;
+            this.txbName.Location = new System.Drawing.Point(92, 42);
+            this.txbName.Name = "txbName";
+            this.txbName.Size = new System.Drawing.Size(194, 20);
+            this.txbName.TabIndex = 2;
             // 
             // label2
             // 
@@ -71,9 +71,9 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.label2);
-            this.Controls.Add(this.txbId);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.txbName);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txbId);
             this.Name = "NewClass";
             this.Size = new System.Drawing.Size(301, 79);
             this.ResumeLayout(false);
@@ -83,9 +83,9 @@
 
         #endregion
 
-        public System.Windows.Forms.TextBox txbName;
-        private System.Windows.Forms.Label label1;
         public System.Windows.Forms.TextBox txbId;
+        private System.Windows.Forms.Label label1;
+        public System.Windows.Forms.TextBox txbName;
         private System.Windows.Forms.Label label2;
     }
 }

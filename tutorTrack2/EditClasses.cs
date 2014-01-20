@@ -20,8 +20,22 @@ namespace tutorTrack2
         public void load(Tutor input)
         {
             current = input;
-            //lBCurrent.DataSource = current.courses;
+            if (current.courses.GetHeightLogN() != 0)
+            {
+                lBCurrent.DataSource = current.courses;
+            }
 
+            lBOptions.DataSource = singletonCourseList.getInstance();
+        }
+
+        private void lBOptions_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (lBOptions.SelectedValue.ToString() == "New")
+            {
+                NewClassForm newClass = new NewClassForm();
+                newClass.ShowDialog();
+                lBOptions.DataSource = singletonCourseList.getInstance();
+            }
         }
     }
 }

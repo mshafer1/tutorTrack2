@@ -43,7 +43,13 @@ namespace tutorTrack2
 
         public override string ToString()
         {
-            string result = idString + ", " + commonName;
+            string result = "";
+            if (idString.Length > 0)
+            {
+                result += idString + ", ";
+            }
+            result += commonName;
+
             return result;
         }
 

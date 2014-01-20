@@ -27,20 +27,21 @@ namespace tutorTrack2
 
         private void NewClassForm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (newClass1.txbName.Text.Length > 0 && newClass1.txbId.Text.Length > 0)
+            if (newClass1.txbId.Text.Length > 0 && newClass1.txbName.Text.Length > 0)
             {
                 newClass = true;
-                name = newClass1.txbName.Text;
-                id = newClass1.txbId.Text;
+                name = newClass1.txbId.Text;
+                id = newClass1.txbName.Text;
             }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
         {
-            if (newClass1.txbName.Text.Length > 0 && newClass1.txbId.Text.Length > 0)
+            if (newClass1.txbId.Text.Length > 0 && newClass1.txbName.Text.Length > 0)
             {
                 newClass = true;
-                name = newClass1.txbName.Text;
+                name = newClass1.txbId.Text;
+                id = newClass1.txbName.Text;
 
                 List<Course>courses = singletonCourseList.getInstance();
                 Course current = new Course();
@@ -49,18 +50,19 @@ namespace tutorTrack2
                 if(!courses.Contains(current))
                 {
                     courses.Add(current);
+                    singletonCourseList.saveToFile();
                 }
                 this.Close();
             }
             else
             {
-                if (newClass1.txbName.Text.Length == 0)
-                {
-                    newClass1.txbName.Text = "Must enter a course name";
-                }
                 if (newClass1.txbId.Text.Length == 0)
                 {
-                    newClass1.txbId.Text = "Must enter a course ID";
+                    newClass1.txbId.Text = "Must enter a course name";
+                }
+                if (newClass1.txbName.Text.Length == 0)
+                {
+                    newClass1.txbName.Text = "Must enter a course ID";
                 }
             }
             

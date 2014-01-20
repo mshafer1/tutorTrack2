@@ -22,9 +22,8 @@ namespace tutorTrack2
                 }
                 else
                 {
-                    //MessageBox.Show("No Clients initialized", "Error");
                     p = new List<Course>();
-                    throw new Exception();
+                    //throw new Exception();
                 }
             }
             return p;

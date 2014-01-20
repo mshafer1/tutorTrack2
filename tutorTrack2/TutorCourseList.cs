@@ -16,10 +16,12 @@ namespace tutorTrack2
         public TutorCourseList()
         {
             InitializeComponent();
+           
         }
         public void setTutor(Tutor input)
         {
             current = input;
+            
             lblCourseID.Text = "";
             lblCourseName.Text = "";
             //List<Course> courses = current.courses.getList();
@@ -44,7 +46,8 @@ namespace tutorTrack2
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-
+            groupBox1.Visible = false;
+            editClasses1.load(current);
         }
     }
 }
