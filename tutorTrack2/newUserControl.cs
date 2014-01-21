@@ -203,9 +203,9 @@ namespace tutorTrack2
                         }
                         cbTutors.DataSource = tutorNames;
                     }
-                    catch (Exception exception)
+                    catch
                     {
-                        throw exception;
+                        throw;
                     }
                 }
             }
@@ -233,7 +233,7 @@ namespace tutorTrack2
             //currentTutor = Tutor.FindTutor(tutorNames[cbTutors.SelectedIndex]);
             currentClient = new Client(name, id);
             currentClient.course = currentCourse;
-            currentClient.tutor = currentTutor;
+            //currentClient.tutor = currentTutor;
             currentTutor.addClient(currentClient);
             singletonTutorList.saveToFile();
         }

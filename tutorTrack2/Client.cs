@@ -5,7 +5,7 @@ using System.Text;
 
 namespace tutorTrack2
 {
-    public class Client : User , IComparable<Client>
+    public class Client : User// , IComparable<Client>
     {
         public Client(string name, string id)
         {
@@ -29,7 +29,7 @@ namespace tutorTrack2
 
         internal Course course { get; set; }
 
-        public Tutor tutor { get; set; }
+        //public Tutor tutor { get; set; }
 
 
 
@@ -38,9 +38,9 @@ namespace tutorTrack2
             return userTypes.Client;
         }
 
-        public int CompareTo(Client input)
-        {
-            return string.Compare(input.Id, Id);
-        }
+        //public int CompareTo(Client input)
+        //{
+        //    return string.Compare(input.Id, Id);
+        //}
     }
 }

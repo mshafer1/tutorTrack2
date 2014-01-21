@@ -38,6 +38,7 @@ namespace tutorTrack2
             {
                 appointment.finished = true;
                 appointment.endTime = DateTime.Now;
+                SingletonAppointmentList.saveToFile();
             }
         }
 
@@ -53,6 +54,7 @@ namespace tutorTrack2
                 appointment.client = currentTutor.clients.Find(x => x.Id == id);
                 appointment.startTime = DateTime.Now;
                 SingletonAppointmentList.getInstance().Add(appointment);
+                SingletonAppointmentList.saveToFile();
             }
             else
             {
