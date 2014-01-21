@@ -27,14 +27,36 @@ namespace tutorTrack2
         {
             if (btnAppointment.Text == "Start Appointment")
             {
-                appointment = new Appointment();
-                appointment.tutor = currentTutor;
                 
+                //appointment.client
+
+                ClientConfirm clientConfirm = new ClientConfirm();
+                clientConfirm.ExitEventDelegate += clientConfirmAttempt;
+                clientConfirm.ShowDialog();
             }
             else
             {
                 appointment.finished = true;
                 appointment.endTime = DateTime.Now;
+            }
+        }
+
+        void clientConfirmAttempt(string id)
+        {
+            var isClientId = (currentTutor.clients).Any(x => x.Id == id);
+
+            if (isClientId)
+            {
+                appointment = new Appointment();
+                appointment.tutor = currentTutor;
+                appointment.finished = false;
+                appointment.client = currentTutor.clients.Find(x => x.Id == id);
+                appointment.startTime = DateTime.Now;
+                SingletonAppointmentList.getInstance().Add(appointment);
+            }
+            else
+            {
+                MessageBox.Show("Client id not recognized as Tutor's client", "Error");
             }
         }
 

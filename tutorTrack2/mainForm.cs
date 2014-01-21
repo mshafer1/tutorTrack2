@@ -55,18 +55,6 @@ namespace tutorTrack2
                 tutors = singletonTutorList.getInstance();
                 runAdmin();
             }
-
-            try
-            {
-                clients = singeltonClientList.getInstance();
-            }
-            catch (Exception)
-            {
-                clients = singeltonClientList.getInstance();
-                runAdmin();
-            }
-
-            
         }
 
 
@@ -81,12 +69,12 @@ namespace tutorTrack2
 
         private void viewLogs(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+         //   throw new NotImplementedException();
         }
 
         private void timeSheet(object sender, EventArgs e)
         {
-            throw new NotImplementedException();
+           // throw new NotImplementedException();
         }
 
         private void newUser(object sender, EventArgs e)

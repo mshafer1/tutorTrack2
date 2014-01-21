@@ -5,7 +5,7 @@ using System.Text;
 
 namespace tutorTrack2
 {
-    public class Client : User
+    public class Client : User , IComparable<Client>
     {
         public Client(string name, string id)
         {
@@ -23,6 +23,7 @@ namespace tutorTrack2
 
         public Client()
         {
+            Name = Id = "";
         }
         internal ContactInfo contactInfo { get; set; }
 
@@ -35,6 +36,11 @@ namespace tutorTrack2
         public override userTypes getType()
         {
             return userTypes.Client;
+        }
+
+        public int CompareTo(Client input)
+        {
+            return string.Compare(input.Id, Id);
         }
     }
 }

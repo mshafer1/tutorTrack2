@@ -9,8 +9,7 @@ namespace tutorTrack2
 {
     public class Tutor : User
     {
-        private User current;
-        public AVLTree<Client> clients;
+        public List<Client> clients;
         public List<Course> courses;
 
         public Tutor()
@@ -20,15 +19,12 @@ namespace tutorTrack2
 
         public static Tutor FindTutor(string input)
         {
-            var tutorList = singletonTutorList.getInstance();
-            foreach (var tutor in tutorList)
+            Tutor result =  singletonTutorList.getInstance().Find(x=>x.Name == input);
+            if (result != null)
             {
-                if (tutor.Name == input)
-                {
-                    return tutor;
-                }
+                return result;
             }
-            throw new Exception();
+            throw new Exception(); // this should never happen
         }
 
         public Tutor(User current)
@@ -52,10 +48,19 @@ namespace tutorTrack2
 
         public void addClient(Client newClient)
         {
+            if (clients == null)
+            {
+                clients = new List<Client>();
+            }
             if (!clients.Contains(newClient))
             {
                 clients.Add(newClient);
             }
+        }
+
+        public override string ToString()
+        {
+            return (Name);
         }
     }
 }

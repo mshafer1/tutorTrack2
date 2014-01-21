@@ -18,8 +18,8 @@ namespace tutorTrack2
         private string id;
         List<Tutor> tutors;
         List<Course> courseList;
-        List<Client> clients;
         Tutor currentTutor;
+        const string TUTOR_SELECT = "Select a Tutor";
 
         private void newUserControl_Load(object sender, EventArgs e)
         {
@@ -29,28 +29,12 @@ namespace tutorTrack2
             try
             {
                 tutors = singletonTutorList.getInstance();
-                tutorNames = (from tutor in tutors
-                              select tutor.Name).ToList<string>();
             }
             catch (Exception)
             {
                 tutors = singletonTutorList.getInstance();
                 rbTutor.Select();
-                tutorNames = new List<string>();
             }
-
-            tutorNames.Add("Select a Tutor");
-
-            try
-            {
-                clients = singeltonClientList.getInstance();
-            }
-            catch (Exception)
-            {
-                clients = singeltonClientList.getInstance();
-            }
-
-            courses.Add("New");
 
             try
             {
@@ -75,7 +59,6 @@ namespace tutorTrack2
         public newUserControl()
         {
             InitializeComponent();
-
         }
 
         private void rbTutor_CheckedChanged(object sender, EventArgs e)
@@ -91,18 +74,20 @@ namespace tutorTrack2
             if (rbClient.Checked)
             {
                 gBClient.Visible = true;
-                btnOk.TabIndex = 7;
+                btnOk.TabIndex = 5;
 
-                cBCourses.TabIndex = 5;
-                cbTutors.TabIndex = 6;
+                cBCourses.TabIndex = 3;
+                cbTutors.TabIndex = 4;
                 cBCourses.TabStop = true;
                 cbTutors.TabStop = true;
+
+                cBCourses.DataSource = singletonCourseList.getInstance();
             }
             else
             {
                 cBCourses.TabStop = false;
                 cbTutors.TabStop = false;
-                btnOk.TabIndex = 5;
+                btnOk.TabIndex = 4;
             }
         }
 
@@ -158,6 +143,11 @@ namespace tutorTrack2
                 label3.Visible = cBCourses.SelectedItem.ToString() == "Select a course";
             }
         }
+
+        private void btnCancel_Click(object sender, EventArgs e)
+        {
+            newUserFinishedEventHandler(sender, e);
+        }
         #region new User Event
         public EventHandler newUserEventHandler;
 
@@ -175,7 +165,8 @@ namespace tutorTrack2
 
         #region client
 
-        Client current;
+        Course currentCourse;
+        Client currentClient;
         private void Courses_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (courses.Count != 0 && cBCourses.SelectedItem.ToString() != "Select a Course")
@@ -196,12 +187,21 @@ namespace tutorTrack2
                 }
                 else
                 {
-                    Course current = Course.FromString(cBCourses.SelectedItem.ToString());
+                    currentCourse = Course.FromString(cBCourses.SelectedItem.ToString());
                     try
                     {
-                        tutorNames = (from tutor in singletonTutorList.getInstance()
-                                      where tutor.courses.Contains(Course.FromString(cBCourses.SelectedItem.ToString()))
+                        string input = cBCourses.SelectedItem.ToString();
+                        Course temp = Course.FromString(input);
+                        tutorNames = new List<string>();
+                        tutorNames.Add(TUTOR_SELECT);
+                        var names = (from tutor in singletonTutorList.getInstance()
+                                      where tutor.courses.Find(x => x.Id == temp.Id) != null
                                       select tutor.Name).ToList<String>();
+                        foreach (string name in names)
+                        {
+                            tutorNames.Add(name);
+                        }
+                        cbTutors.DataSource = tutorNames;
                     }
                     catch (Exception exception)
                     {
@@ -213,9 +213,14 @@ namespace tutorTrack2
 
         private void Tutors_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cbTutors.SelectedIndex > 0 && cbTutors.SelectedText.Length > 0)
+            string temp = "";
+            if(cbTutors.SelectedIndex > 0 && cbTutors.SelectedIndex <= tutorNames.Count())
             {
-                currentTutor = Tutor.FindTutor(cbTutors.SelectedText);
+                temp = tutorNames[cbTutors.SelectedIndex];
+            }
+            if (temp.Length > 0 && temp != TUTOR_SELECT)
+            {
+                currentTutor = Tutor.FindTutor(temp);
             }
             else
             {
@@ -225,11 +230,12 @@ namespace tutorTrack2
 
         void addClient()
         {
-            current = new Client(name, id);
-            //current.course = Course.FromString(cBCourses.SelectedValue.ToString());
-            //currentTutor.addClient(current);\
-            singeltonClientList.getInstance().Add(current);
-            singeltonClientList.saveToFile();
+            //currentTutor = Tutor.FindTutor(tutorNames[cbTutors.SelectedIndex]);
+            currentClient = new Client(name, id);
+            currentClient.course = currentCourse;
+            currentClient.tutor = currentTutor;
+            currentTutor.addClient(currentClient);
+            singletonTutorList.saveToFile();
         }
 
         #endregion
@@ -265,6 +271,8 @@ namespace tutorTrack2
         }
 
         #endregion
+
+
 
 
     }

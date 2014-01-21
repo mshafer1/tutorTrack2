@@ -31,6 +31,7 @@
             this.rbClient = new System.Windows.Forms.RadioButton();
             this.rbTutor = new System.Windows.Forms.RadioButton();
             this.gBClient = new System.Windows.Forms.GroupBox();
+            this.lblTutorSelectMust = new System.Windows.Forms.Label();
             this.cbTutors = new System.Windows.Forms.ComboBox();
             this.cBCourses = new System.Windows.Forms.ListBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -40,7 +41,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.rdbAdmin = new System.Windows.Forms.RadioButton();
-            this.lblTutorSelectMust = new System.Windows.Forms.Label();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.gBClient.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -81,6 +82,17 @@
             this.gBClient.TabStop = false;
             this.gBClient.Text = " ";
             // 
+            // lblTutorSelectMust
+            // 
+            this.lblTutorSelectMust.AutoSize = true;
+            this.lblTutorSelectMust.Enabled = false;
+            this.lblTutorSelectMust.Location = new System.Drawing.Point(139, 12);
+            this.lblTutorSelectMust.Name = "lblTutorSelectMust";
+            this.lblTutorSelectMust.Size = new System.Drawing.Size(94, 13);
+            this.lblTutorSelectMust.TabIndex = 20;
+            this.lblTutorSelectMust.Text = "Must select a tutor";
+            this.lblTutorSelectMust.Visible = false;
+            // 
             // cbTutors
             // 
             this.cbTutors.FormattingEnabled = true;
@@ -114,7 +126,7 @@
             this.tBName.Location = new System.Drawing.Point(3, 79);
             this.tBName.Name = "tBName";
             this.tBName.Size = new System.Drawing.Size(177, 20);
-            this.tBName.TabIndex = 3;
+            this.tBName.TabIndex = 2;
             this.tBName.Text = "Enter New User Name";
             this.tBName.MouseClick += new System.Windows.Forms.MouseEventHandler(this.tBName_MouseClick);
             this.tBName.TextChanged += new System.EventHandler(this.tBName_TextChanged);
@@ -124,17 +136,17 @@
             this.tBid.Location = new System.Drawing.Point(3, 106);
             this.tBid.Name = "tBid";
             this.tBid.Size = new System.Drawing.Size(177, 20);
-            this.tBid.TabIndex = 4;
+            this.tBid.TabIndex = 3;
             this.tBid.Text = "Enter New User ID (H number)";
             this.tBid.MouseClick += new System.Windows.Forms.MouseEventHandler(this.textBoxID_MouseClick);
             this.tBid.TextChanged += new System.EventHandler(this.tBid_TextChanged);
             // 
             // btnOk
             // 
-            this.btnOk.Location = new System.Drawing.Point(116, 283);
+            this.btnOk.Location = new System.Drawing.Point(38, 280);
             this.btnOk.Name = "btnOk";
             this.btnOk.Size = new System.Drawing.Size(75, 23);
-            this.btnOk.TabIndex = 5;
+            this.btnOk.TabIndex = 4;
             this.btnOk.Text = "OK";
             this.btnOk.UseVisualStyleBackColor = true;
             this.btnOk.Click += new System.EventHandler(this.btnOk_Click);
@@ -171,21 +183,21 @@
             this.rdbAdmin.UseVisualStyleBackColor = true;
             this.rdbAdmin.CheckedChanged += new System.EventHandler(this.rdbAdmin_CheckedChanged);
             // 
-            // lblTutorSelectMust
+            // btnCancel
             // 
-            this.lblTutorSelectMust.AutoSize = true;
-            this.lblTutorSelectMust.Enabled = false;
-            this.lblTutorSelectMust.Location = new System.Drawing.Point(139, 12);
-            this.lblTutorSelectMust.Name = "lblTutorSelectMust";
-            this.lblTutorSelectMust.Size = new System.Drawing.Size(94, 13);
-            this.lblTutorSelectMust.TabIndex = 20;
-            this.lblTutorSelectMust.Text = "Must select a tutor";
-            this.lblTutorSelectMust.Visible = false;
+            this.btnCancel.Location = new System.Drawing.Point(146, 280);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 23);
+            this.btnCancel.TabIndex = 11;
+            this.btnCancel.Text = "Cancel";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
             // newUserControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.rdbAdmin);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -220,5 +232,6 @@
         private System.Windows.Forms.ListBox cBCourses;
         private System.Windows.Forms.ComboBox cbTutors;
         private System.Windows.Forms.Label lblTutorSelectMust;
+        private System.Windows.Forms.Button btnCancel;
     }
 }
