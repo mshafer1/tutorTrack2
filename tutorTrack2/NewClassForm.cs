@@ -45,8 +45,8 @@ namespace tutorTrack2
 
                 List<Course>courses = singletonCourseList.getInstance();
                 Course current = new Course();
-                current.name = name;
-                current.id = id;
+                current.Name = name;
+                current.Id = id;
                 if(!courses.Contains(current))
                 {
                     courses.Add(current);

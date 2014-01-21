@@ -28,13 +28,13 @@ namespace tutorTrack2
 
             try
             {
-                tutors = singeltonTutorList.getInstance();
+                tutors = singletonTutorList.getInstance();
                 tutorNames = (from tutor in tutors
                               select tutor.Name).ToList<string>();
             }
             catch (Exception)
             {
-                tutors = singeltonTutorList.getInstance();
+                tutors = singletonTutorList.getInstance();
                 rbTutor.Select();
                 tutorNames = new List<string>();
             }
@@ -199,7 +199,7 @@ namespace tutorTrack2
                     Course current = Course.FromString(cBCourses.SelectedItem.ToString());
                     try
                     {
-                        tutorNames = (from tutor in singeltonTutorList.getInstance()
+                        tutorNames = (from tutor in singletonTutorList.getInstance()
                                       where tutor.courses.Contains(Course.FromString(cBCourses.SelectedItem.ToString()))
                                       select tutor.Name).ToList<String>();
                     }
@@ -241,8 +241,8 @@ namespace tutorTrack2
             currentTutor = new Tutor();
             currentTutor.Name = name;
             currentTutor.Id = id;
-            singeltonTutorList.getInstance().Add(currentTutor);
-            singeltonTutorList.saveToFile();
+            singletonTutorList.getInstance().Add(currentTutor);
+            singletonTutorList.saveToFile();
         }
         #endregion
 

@@ -20,7 +20,7 @@ namespace tutorTrack2
 
         public static Tutor FindTutor(string input)
         {
-            var tutorList = singeltonTutorList.getInstance();
+            var tutorList = singletonTutorList.getInstance();
             foreach (var tutor in tutorList)
             {
                 if (tutor.Name == input)

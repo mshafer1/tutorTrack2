@@ -13,7 +13,7 @@ using System.Xml.Serialization;
 
 namespace tutorTrack2
 {
-    static class singeltonTutorList
+    static class singletonTutorList
     {
         const string TUTOR_FILE_NAME = "tutors.xml";
         public static List<Tutor> getInstance()

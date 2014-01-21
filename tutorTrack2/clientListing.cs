@@ -18,12 +18,12 @@ namespace tutorTrack2
         }
         public void display( Tutor input )
         {
-            List<Tutor> tutors = singeltonTutorList.getInstance();
-            /*var ClientNames = from client in (from tutor in tutors
-                               where tutor == input
-                               select tutor.clients)
-                                  select client.Keys;
-            lblClientNames.Text = ClientNames.ToString();*/
+            List<Tutor> tutors = singletonTutorList.getInstance();
+            //var clientnames = from client in (from tutor in tutors
+            //                   where tutor == input
+            //                   select tutor.clients)
+            //                      select client.keys;
+            //lblclientnames.text = clientnames.tostring();
         }
     }
 }

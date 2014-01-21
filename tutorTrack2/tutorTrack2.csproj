@@ -51,6 +51,8 @@
       <DependentUpon>AdminView.cs</DependentUpon>
     </Compile>
     <Compile Include="AdminUser.cs" />
+    <Compile Include="Appointment.cs" />
+    <Compile Include="SingletonAppointmentList.cs" />
     <Compile Include="AvlTree.cs" />
     <Compile Include="Client.cs" />
     <Compile Include="ClientListDisplayForm.cs">
@@ -111,7 +113,7 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="singeltonTutorList.cs" />
+    <Compile Include="singletonTutorList.cs" />
     <Compile Include="singletonAdminList.cs" />
     <Compile Include="singletonCourseList.cs" />
     <Compile Include="SingletonClientList.cs" />

@@ -17,6 +17,8 @@ namespace tutorTrack2
         private static List<Tutor> tutors;
         private static List<Client> clients;
         private static List<AdminUser> admin;
+        private static List<Appointment> log;
+
 
         public mainForm()
         {
@@ -26,6 +28,8 @@ namespace tutorTrack2
             admin1.timeSheetsEventHandler += this.timeSheet;
             admin1.viewLogsEventHandler += this.viewLogs;
             newUserControl1.newUserFinishedEventHandler += this.viewLogin;
+            tutorLoggedIn1.exitTutorEventHandler += this.viewLogin;
+            tutorLoggedIn1.toggleAppointmentEventHandler += this.viewLogin;
 
             //newUserControl1 = new newUserControl();
             newUserControl1.Visible = false;
@@ -44,11 +48,11 @@ namespace tutorTrack2
 
             try
             {
-                tutors = singeltonTutorList.getInstance();
+                tutors = singletonTutorList.getInstance();
             }
             catch (Exception)
             {
-                tutors = singeltonTutorList.getInstance();
+                tutors = singletonTutorList.getInstance();
                 runAdmin();
             }
 
@@ -61,11 +65,15 @@ namespace tutorTrack2
                 clients = singeltonClientList.getInstance();
                 runAdmin();
             }
+
+            
         }
+
 
         private void viewLogin(object sender, EventArgs e)
         {
             this.login1.Visible = true;
+            login1.Reset();
             admin1.Visible = false;
             newUserControl1.Visible = false;
             tutorLoggedIn1.Visible = false;

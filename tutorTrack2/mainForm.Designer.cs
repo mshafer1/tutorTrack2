@@ -59,9 +59,9 @@
             // 
             // tutorLoggedIn1
             // 
-            this.tutorLoggedIn1.Location = new System.Drawing.Point(107, 30);
+            this.tutorLoggedIn1.Location = new System.Drawing.Point(96, 30);
             this.tutorLoggedIn1.Name = "tutorLoggedIn1";
-            this.tutorLoggedIn1.Size = new System.Drawing.Size(93, 136);
+            this.tutorLoggedIn1.Size = new System.Drawing.Size(92, 181);
             this.tutorLoggedIn1.TabIndex = 3;
             this.tutorLoggedIn1.Visible = false;
             // 
@@ -79,6 +79,7 @@
             this.Name = "mainForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
+
         }
 
         #endregion

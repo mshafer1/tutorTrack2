@@ -23,6 +23,8 @@ namespace tutorTrack2
         public void load(Tutor input)
         {
             current = input;
+            //singletonCourseList.getInstance().Add(new Course("New"));
+            //singletonCourseList.saveToFile();
             SetCourseOptions();
             readyForNew = true;
         }
@@ -33,28 +35,40 @@ namespace tutorTrack2
         {
             if (readyForNew && lBOptions.Items.Count > 0 && lBOptions.SelectedValue.ToString() == "New")
             {
+                readyForNew = false;
                 NewClassForm newClass = new NewClassForm();
                 newClass.ShowDialog();
                 SetCourseOptions();
+                if (lBOptions.Items.Count > 1)
+                {
+                    lBOptions.SelectedIndex = 1;
+                }
+                else
+                {
+                    lBOptions.SelectedIndex = 0;
+                }
                 readyForNew = true;
             }
         }
 
         private void btnShiftRight_Click(object sender, EventArgs e)
         {
-            current.addCourse((Course)lBOptions.SelectedItem);
-            readyForNew = false;
-            SetCourseOptions();
-            if (lBOptions.Items.Count > 1)
+            if (lBOptions.SelectedItem.ToString() != "New")
             {
-                lBOptions.SelectedIndex = 1;
+                current.addCourse((Course)lBOptions.SelectedItem);
+                readyForNew = false;
+                SetCourseOptions();
+                if (lBOptions.Items.Count > 1)
+                {
+                    lBOptions.SelectedIndex = 1;
+                }
+                else
+                {
+                    lBOptions.SelectedIndex = 0;
+                }
+                readyForNew = true;
+                singletonTutorList.saveToFile();
             }
-            else
-            {
-                lBOptions.SelectedIndex = 0;
-            }
-            readyForNew = true;
-            singeltonTutorList.saveToFile();
         }
 
         private void btnShiftLeft_Click(object sender, EventArgs e)
@@ -75,9 +89,9 @@ namespace tutorTrack2
                 foreach (var course in current.courses)
                 {
                     Course currentCourse;
-                    currentCourse = availablecourses.Find(x => x.id == course.id);
+                    currentCourse = availablecourses.Find(x => x.Id == course.Id);
                     if (!availablecourses.Remove(currentCourse))
-                        MessageBox.Show("Problemo");
+                        MessageBox.Show("Please contact support 501.444.2467","Problemo");//this should never happen
                 }
             }
             lBOptions.DataSource = availablecourses;

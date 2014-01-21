@@ -8,33 +8,22 @@ namespace tutorTrack2
 {
     public class Course
     {
-        public string commonName;
-        public string idString;
-
+        
         public Course(string p)
         {
-            commonName = p;
+            Name = p;
         }
         public Course(Course p)
         {
-            commonName = p.commonName;
-            idString = p.idString;
+            Name = p.Name;
+            Id = p.Id;
         }
         public Course()
         {
-            commonName = idString = "";
+            Name = Id = "";
         }
-        public string id
-        {
-            get { return this.idString; }
-            set { this.idString = value; }
-        }
-
-        public string name
-        {
-            get { return this.commonName; }
-            set { this.commonName = value; }
-        }
+        public string Name { get; set; }
+        public string Id { get; set; }
 
         //public override int CompareTo(Course input)
         //{
@@ -44,11 +33,11 @@ namespace tutorTrack2
         public override string ToString()
         {
             string result = "";
-            if (idString.Length > 0)
+            if (Id.Length > 0)
             {
-                result += idString + ", ";
+                result += Id + ", ";
             }
-            result += commonName;
+            result += Name;
 
             return result;
         }
@@ -56,8 +45,8 @@ namespace tutorTrack2
         public static Course FromString(string input)
         {
             Course result = new Course();
-            result.id = input.Substring(0, input.IndexOf(','));
-            result.name = input.Substring(input.IndexOf(',') + 1);
+            result.Id = input.Substring(0, input.IndexOf(','));
+            result.Name = input.Substring(input.IndexOf(',') + 1);
             return result;
         }
     }

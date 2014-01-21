@@ -26,13 +26,13 @@ namespace tutorTrack2
             lblCourseName.Text = "";
             List<Course> courses = current.courses/*.getList()*/;
             var courseIds = from course in courses
-                            select course.id;
+                            select course.Id;
             foreach (string id in courseIds)
             {
                 lblCourseID.Text += id + "\n";
             }
             var courseNames = from course in courses
-                            select course.name;
+                            select course.Name;
             foreach (string name in courseNames)
             {
                 lblCourseName.Text += name + "\n";
