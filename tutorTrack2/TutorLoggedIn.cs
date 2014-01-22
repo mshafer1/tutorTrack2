@@ -49,9 +49,9 @@ namespace tutorTrack2
             if (isClientId)
             {
                 appointment = new Appointment();
-                appointment.tutor = currentTutor;
+                appointment.tutor = currentTutor.Name;
                 appointment.finished = false;
-                appointment.client = currentTutor.clients.Find(x => x.Id == id);
+                appointment.client = currentTutor.clients.Find(x => x.Id == id).Name;
                 appointment.startTime = DateTime.Now;
                 SingletonAppointmentList.getInstance().Add(appointment);
                 SingletonAppointmentList.saveToFile();
@@ -68,7 +68,7 @@ namespace tutorTrack2
 
             var appointmentOptions = (from appointments in SingletonAppointmentList.getInstance()
                                       where appointments.finished == false
-                                      && appointments.tutor == currentTutor
+                                      && appointments.tutor == currentTutor.Name
                                       select appointments).ToList<Appointment>();
 
             if (appointmentOptions != null && appointmentOptions.Count > 0)

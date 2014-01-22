@@ -6,12 +6,12 @@ using System.Threading.Tasks;
 
 namespace tutorTrack2
 {
-    class Appointment
+    public class Appointment
     {
-        internal Tutor tutor { get; set; }
-        internal Client client { get; set; }
-        internal DateTime startTime { get; set; }
-        internal DateTime endTime { get; set; }
-        internal bool finished { get; set; }
+        public string tutor { get; set; }
+        public string client { get; set; }
+        public DateTime startTime { get; set; }
+        public DateTime endTime { get; set; }
+        public bool finished { get; set; }
     }
 }
