@@ -21,6 +21,8 @@ namespace tutorTrack2
         {
             newUserEvent(sender, e);
         }
+
+
         public EventHandler newUserEventHandler;
         public delegate void newUserEventHandlerDelegate(object sender, EventArgs e);
         public void newUserEvent(object sender, EventArgs e)
@@ -66,5 +68,28 @@ namespace tutorTrack2
             }
         }
         #endregion
+
+        private void btnUserView_Click(object sender, EventArgs e)
+        {
+            var TutorForm = new AdminViewTutors();
+            TutorForm.ShowDialog();
+        }
+
+        private void btnDone_Click(object sender, EventArgs e)
+        {
+            AdminDoneEvent(sender, e);
+        }
+
+        public EventHandler AdminDoneEventHandler;
+        public delegate void AdminDoneEventHandlerDelegate(object sender, EventArgs e);
+        public void AdminDoneEvent(object sender, EventArgs e)
+        {
+            EventHandler handler = AdminDoneEventHandler;
+            if (handler != null)
+            {
+                handler(sender, e);
+            }
+        }
+        
     }
 }

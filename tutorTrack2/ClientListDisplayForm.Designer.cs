@@ -33,16 +33,16 @@
             // 
             // clientListing1
             // 
-            this.clientListing1.Location = new System.Drawing.Point(2, -2);
+            this.clientListing1.Location = new System.Drawing.Point(4, 13);
             this.clientListing1.Name = "clientListing1";
-            this.clientListing1.Size = new System.Drawing.Size(525, 188);
+            this.clientListing1.Size = new System.Drawing.Size(688, 204);
             this.clientListing1.TabIndex = 0;
             // 
             // ClientListDisplayForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(525, 186);
+            this.ClientSize = new System.Drawing.Size(704, 229);
             this.Controls.Add(this.clientListing1);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
@@ -55,5 +55,6 @@
         #endregion
 
         public clientListing clientListing1;
+
     }
 }

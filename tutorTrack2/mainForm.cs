@@ -15,7 +15,7 @@ namespace tutorTrack2
     public partial class mainForm : Form
     {
         private static List<Tutor> tutors;
-        private static List<Client> clients;
+       
         private static List<AdminUser> admin;
         private static List<Appointment> log;
 
@@ -30,6 +30,7 @@ namespace tutorTrack2
             newUserControl1.newUserFinishedEventHandler += this.viewLogin;
             tutorLoggedIn1.exitTutorEventHandler += this.viewLogin;
             tutorLoggedIn1.toggleAppointmentEventHandler += this.viewLogin;
+            admin1.AdminDoneEventHandler += this.viewLogin;
 
             //newUserControl1 = new newUserControl();
             newUserControl1.Visible = false;

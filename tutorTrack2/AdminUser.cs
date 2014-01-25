@@ -8,8 +8,7 @@ namespace tutorTrack2
 {
     public class AdminUser:User
     {
-        private User current;
-
+       
         public AdminUser(User current)
         {
             // TODO: Complete member initialization

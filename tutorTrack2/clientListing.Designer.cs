@@ -32,7 +32,6 @@
             this.lblClass = new System.Windows.Forms.Label();
             this.lblPhone = new System.Windows.Forms.Label();
             this.lblEmail = new System.Windows.Forms.Label();
-            this.vScrollBar1 = new System.Windows.Forms.VScrollBar();
             this.SuspendLayout();
             // 
             // lblClientNames
@@ -40,55 +39,47 @@
             this.lblClientNames.AutoSize = true;
             this.lblClientNames.Location = new System.Drawing.Point(4, 4);
             this.lblClientNames.Name = "lblClientNames";
-            this.lblClientNames.Size = new System.Drawing.Size(35, 13);
+            this.lblClientNames.Size = new System.Drawing.Size(40, 13);
             this.lblClientNames.TabIndex = 0;
-            this.lblClientNames.Text = "label1";
+            this.lblClientNames.Text = "Names";
             // 
             // lblClass
             // 
             this.lblClass.AutoSize = true;
-            this.lblClass.Location = new System.Drawing.Point(136, 4);
+            this.lblClass.Location = new System.Drawing.Point(186, 4);
             this.lblClass.Name = "lblClass";
-            this.lblClass.Size = new System.Drawing.Size(35, 13);
+            this.lblClass.Size = new System.Drawing.Size(32, 13);
             this.lblClass.TabIndex = 1;
-            this.lblClass.Text = "label1";
+            this.lblClass.Text = "Class";
             // 
             // lblPhone
             // 
             this.lblPhone.AutoSize = true;
-            this.lblPhone.Location = new System.Drawing.Point(251, 4);
+            this.lblPhone.Location = new System.Drawing.Point(354, 4);
             this.lblPhone.Name = "lblPhone";
-            this.lblPhone.Size = new System.Drawing.Size(35, 13);
+            this.lblPhone.Size = new System.Drawing.Size(45, 13);
             this.lblPhone.TabIndex = 2;
-            this.lblPhone.Text = "label1";
+            this.lblPhone.Text = "Phone#";
             // 
             // lblEmail
             // 
             this.lblEmail.AutoSize = true;
-            this.lblEmail.Location = new System.Drawing.Point(373, 4);
+            this.lblEmail.Location = new System.Drawing.Point(531, 4);
             this.lblEmail.Name = "lblEmail";
-            this.lblEmail.Size = new System.Drawing.Size(35, 13);
+            this.lblEmail.Size = new System.Drawing.Size(32, 13);
             this.lblEmail.TabIndex = 3;
-            this.lblEmail.Text = "label1";
-            // 
-            // vScrollBar1
-            // 
-            this.vScrollBar1.Location = new System.Drawing.Point(505, 0);
-            this.vScrollBar1.Name = "vScrollBar1";
-            this.vScrollBar1.Size = new System.Drawing.Size(20, 187);
-            this.vScrollBar1.TabIndex = 4;
+            this.lblEmail.Text = "Email";
             // 
             // clientListing
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.vScrollBar1);
             this.Controls.Add(this.lblEmail);
             this.Controls.Add(this.lblPhone);
             this.Controls.Add(this.lblClass);
             this.Controls.Add(this.lblClientNames);
             this.Name = "clientListing";
-            this.Size = new System.Drawing.Size(525, 187);
+            this.Size = new System.Drawing.Size(638, 187);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -100,6 +91,5 @@
         private System.Windows.Forms.Label lblClass;
         private System.Windows.Forms.Label lblPhone;
         private System.Windows.Forms.Label lblEmail;
-        private System.Windows.Forms.VScrollBar vScrollBar1;
     }
 }

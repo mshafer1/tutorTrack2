@@ -31,11 +31,13 @@
             this.btnLogs = new System.Windows.Forms.Button();
             this.btnUser = new System.Windows.Forms.Button();
             this.btnSheets = new System.Windows.Forms.Button();
+            this.btnUserView = new System.Windows.Forms.Button();
+            this.btnDone = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // btnLogs
             // 
-            this.btnLogs.Location = new System.Drawing.Point(19, 29);
+            this.btnLogs.Location = new System.Drawing.Point(19, 58);
             this.btnLogs.Name = "btnLogs";
             this.btnLogs.Size = new System.Drawing.Size(75, 23);
             this.btnLogs.TabIndex = 0;
@@ -55,7 +57,7 @@
             // 
             // btnSheets
             // 
-            this.btnSheets.Location = new System.Drawing.Point(19, 59);
+            this.btnSheets.Location = new System.Drawing.Point(19, 87);
             this.btnSheets.Name = "btnSheets";
             this.btnSheets.Size = new System.Drawing.Size(75, 40);
             this.btnSheets.TabIndex = 2;
@@ -63,15 +65,37 @@
             this.btnSheets.UseVisualStyleBackColor = true;
             this.btnSheets.Click += new System.EventHandler(this.btnSheets_Click);
             // 
-            // Admin
+            // btnUserView
+            // 
+            this.btnUserView.Location = new System.Drawing.Point(19, 29);
+            this.btnUserView.Name = "btnUserView";
+            this.btnUserView.Size = new System.Drawing.Size(75, 23);
+            this.btnUserView.TabIndex = 1;
+            this.btnUserView.Text = "View Tutor";
+            this.btnUserView.UseVisualStyleBackColor = true;
+            this.btnUserView.Click += new System.EventHandler(this.btnUserView_Click);
+            // 
+            // btnDone
+            // 
+            this.btnDone.Location = new System.Drawing.Point(115, 87);
+            this.btnDone.Name = "btnDone";
+            this.btnDone.Size = new System.Drawing.Size(79, 40);
+            this.btnDone.TabIndex = 3;
+            this.btnDone.Text = "Return to login";
+            this.btnDone.UseVisualStyleBackColor = true;
+            this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
+            // 
+            // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.Controls.Add(this.btnDone);
             this.Controls.Add(this.btnSheets);
+            this.Controls.Add(this.btnUserView);
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnLogs);
-            this.Name = "Admin";
-            this.Size = new System.Drawing.Size(119, 102);
+            this.Name = "AdminControl";
+            this.Size = new System.Drawing.Size(241, 138);
             this.ResumeLayout(false);
 
         }
@@ -81,5 +105,7 @@
         private System.Windows.Forms.Button btnLogs;
         private System.Windows.Forms.Button btnUser;
         private System.Windows.Forms.Button btnSheets;
+        private System.Windows.Forms.Button btnUserView;
+        private System.Windows.Forms.Button btnDone;
     }
 }

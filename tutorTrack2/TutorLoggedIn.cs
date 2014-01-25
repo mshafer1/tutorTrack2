@@ -89,7 +89,7 @@ namespace tutorTrack2
         {
             //show window with client information.
             ClientListDisplayForm clientForm1 = new ClientListDisplayForm();
-            clientForm1.clientListing1.display(currentTutor);
+            clientForm1.clientListing1.setTutor(currentTutor);
             clientForm1.ShowDialog();
         }
 

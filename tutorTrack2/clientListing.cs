@@ -16,14 +16,25 @@ namespace tutorTrack2
         {
             InitializeComponent();
         }
-        public void display( Tutor input )
+        public void setTutor(Tutor input)
         {
             List<Tutor> tutors = singletonTutorList.getInstance();
-            //var clientnames = from client in (from tutor in tutors
-            //                   where tutor == input
-            //                   select tutor.clients)
-            //                      select client.keys;
-            //lblclientnames.text = clientnames.tostring();
+            List<Client> clients = input.clients;
+            if (clients != null)
+            {
+                lblClientNames.Text = "";
+                lblClass.Text = "";
+                lblEmail.Text = "";
+                lblPhone.Text = "";
+                foreach (Client c in clients)
+                {
+                    lblClientNames.Text += c.Name + "\n";
+                    lblClass.Text += c.course.ToString() + "\n";
+                    lblEmail.Text += c.contactInfo.email + "\n";
+                    lblPhone.Text += c.contactInfo.phoneNumber + "\n";
+                }
+            }
+
         }
     }
 }

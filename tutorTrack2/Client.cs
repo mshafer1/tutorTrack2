@@ -25,9 +25,9 @@ namespace tutorTrack2
         {
             Name = Id = "";
         }
-        internal ContactInfo contactInfo { get; set; }
+        public ContactInfo contactInfo { get; set; }
 
-        internal Course course { get; set; }
+        public Course course { get; set; }
 
         //public Tutor tutor { get; set; }
 

@@ -40,6 +40,7 @@ namespace tutorTrack2
             {
                 string toFile = xmlSerializerFunctions.ToXML(p);
                 writer.Write(toFile);
+                writer.Close();
             }
         }
 

@@ -36,7 +36,7 @@
             // 
             // newUserControl1
             // 
-            this.newUserControl1.Location = new System.Drawing.Point(-1, 0);
+            this.newUserControl1.Location = new System.Drawing.Point(8, 4);
             this.newUserControl1.Name = "newUserControl1";
             this.newUserControl1.Size = new System.Drawing.Size(299, 310);
             this.newUserControl1.TabIndex = 2;
@@ -46,7 +46,7 @@
             // 
             this.admin1.Location = new System.Drawing.Point(69, 30);
             this.admin1.Name = "admin1";
-            this.admin1.Size = new System.Drawing.Size(119, 102);
+            this.admin1.Size = new System.Drawing.Size(218, 171);
             this.admin1.TabIndex = 1;
             this.admin1.Visible = false;
             // 
@@ -61,7 +61,7 @@
             // 
             this.tutorLoggedIn1.Location = new System.Drawing.Point(96, 30);
             this.tutorLoggedIn1.Name = "tutorLoggedIn1";
-            this.tutorLoggedIn1.Size = new System.Drawing.Size(92, 181);
+            this.tutorLoggedIn1.Size = new System.Drawing.Size(92, 185);
             this.tutorLoggedIn1.TabIndex = 3;
             this.tutorLoggedIn1.Visible = false;
             // 
