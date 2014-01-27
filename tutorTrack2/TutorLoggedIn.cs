@@ -19,19 +19,15 @@ namespace tutorTrack2
             InitializeComponent();
             btnAppointment.Focus();
             this.toggleAppointmentEventHandler += this.toggleAppointment;
-
-            
         }
 
         private void toggleAppointment(object sender, EventArgs e)
         {
             if (btnAppointment.Text == "Start Appointment")
             {
-                
-                //appointment.client
-
                 ClientConfirm clientConfirm = new ClientConfirm();
                 clientConfirm.ExitEventDelegate += clientConfirmAttempt;
+                //clientConfirm.noShowEventDelegate += clientConfirmAttempt;
                 clientConfirm.ShowDialog();
             }
             else
@@ -44,22 +40,38 @@ namespace tutorTrack2
 
         void clientConfirmAttempt(string id)
         {
-            var isClientId = (currentTutor.clients).Any(x => x.Id == id);
-
-            if (isClientId)
+            if (id != "")
             {
-                appointment = new Appointment();
-                appointment.tutor = currentTutor.Name;
-                appointment.finished = false;
-                appointment.client = currentTutor.clients.Find(x => x.Id == id).Name;
-                appointment.course = currentTutor.clients.Find(x => x.Id == id).course.ToString();
-                appointment.startTime = DateTime.Now;
-                SingletonAppointmentList.getInstance().Add(appointment);
-                SingletonAppointmentList.saveToFile();
+                var isClientId = (currentTutor.clients).Any(x => x.Id == id);
+
+                if (isClientId)
+                {
+                    appointment = new Appointment();
+                    appointment.tutor = currentTutor.Name;
+                    appointment.finished = false;
+                    appointment.client = currentTutor.clients.Find(x => x.Id == id).Name;
+                    appointment.course = currentTutor.clients.Find(x => x.Id == id).course.ToString();
+                    appointment.startTime = DateTime.Now;
+                    SingletonAppointmentList.getInstance().Add(appointment);
+                    SingletonAppointmentList.saveToFile();
+                }
+                else
+                {
+                    MessageBox.Show("Client id not recognized as Tutor's client", "Error");
+                }
             }
             else
             {
-                MessageBox.Show("Client id not recognized as Tutor's client", "Error");
+                appointment = new Appointment();
+                appointment.tutor = currentTutor.Name;
+                appointment.finished = true;
+                appointment.client = "No  Show";
+                appointment.course = "";
+                appointment.startTime = DateTime.Now;
+                appointment.endTime = DateTime.Now;
+                appointment.noShow = true;
+                SingletonAppointmentList.getInstance().Add(appointment);
+                SingletonAppointmentList.saveToFile();
             }
         }
 

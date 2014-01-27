@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.IO;
+using System.Drawing.Printing;
 
 namespace tutorTrack2
 {
@@ -33,6 +35,11 @@ namespace tutorTrack2
                 handler(sender, e);
             }
         }
+        private void btnUserView_Click(object sender, EventArgs e)
+        {
+            var TutorForm = new AdminViewTutors();
+            TutorForm.ShowDialog();
+        }
         #endregion
 
         #region View Logs
@@ -42,31 +49,115 @@ namespace tutorTrack2
             display.ShowDialog();
 
         }
-        
+
         #endregion
 
         #region print time sheets
+
+        private void printDoc(string doc)
+        {
+
+            using (StreamReader Printfile = new StreamReader(doc))
+            {
+                PrintDocument printDocument1 = new PrintDocument();
+                printDocument1.PrinterSettings = printDialog1.PrinterSettings;
+                printDocument1.PrintPage += (s, ev) =>
+                {
+                    float linesPerPage = 0;
+                    float yPos = 0;
+                    int count = 0;
+                    float leftMargin = ev.MarginBounds.Left;
+                    float topMargin = ev.MarginBounds.Top;
+                    string line = null;
+                    Font printFont = new Font("Times New Roman", 12);
+
+                    // Calculate the number of lines per page.
+                    linesPerPage = ev.MarginBounds.Height / printFont.GetHeight(ev.Graphics);
+
+                    // Print each line of the file. 
+                    while (count < linesPerPage && ((line = Printfile.ReadLine()) != null))
+                    {
+                        yPos = topMargin + (count * printFont.GetHeight(ev.Graphics));
+                        ev.Graphics.DrawString(line, printFont, Brushes.Black, leftMargin, yPos, new StringFormat());
+                        count++;
+                    }
+
+                    // If more lines exist, print another page. 
+                    if (line != null)
+                        ev.HasMorePages = true;
+                    else
+                        ev.HasMorePages = false;
+                };
+
+                try
+                {
+                    printDocument1.Print();
+                    printDocument1.Dispose();
+                }
+                catch
+                {
+                }
+            }
+        }
+
+
+
         private void btnSheets_Click(object sender, EventArgs e)
         {
-            timeSheetsEvent(sender, e);
-        }
-        public EventHandler timeSheetsEventHandler;
-        public delegate void timeSheetsEventHandlerDelegate(object sender, EventArgs e);
-        public void timeSheetsEvent(object sender, EventArgs e)
-        {
-            EventHandler handler = timeSheetsEventHandler;
-            if (handler != null)
+            var appointments = (SingletonAppointmentList.getInstance());
+            var tutors = singletonTutorList.getInstance();
+
+            if (appointments != null && appointments.Count != 0)
             {
-                handler(sender, e);
+                printDialog1.ShowDialog();
+                foreach (var tutor in tutors)
+                {
+                    var tutorAppointments = from appointment in appointments
+                                            where appointment.tutor == tutor.ToString()
+                                            select appointment;
+                    if (tutorAppointments != null)
+                    {
+                        const string timeSheetFile = "timeSheets.dat";
+                        using (StreamWriter writer = new StreamWriter(timeSheetFile))
+                        {
+                            writer.Write(tutor.Name);
+                            writer.Write("          H");
+                            writer.Write(tutor.Id);
+                            writer.WriteLine("");
+                            writer.WriteLine("Account#: Fund:1100 Org: 3A0901 Acount: 700500 Program: 1K\nDepartment: CSS-Tutoring");  //finish this later
+                            writer.WriteLine("Date               Start          End     Duration(hh:mm)");
+                            foreach (var appointment in tutorAppointments)
+                            {
+                                if (appointment.noShow == false)
+                                {
+                                    writer.WriteLine(appointment.startTime.ToShortDateString() + "     "
+                                        + appointment.startTime.ToShortTimeString() + "     "
+                                        + appointment.endTime.ToShortTimeString() + "     "
+                                        + (appointment.endTime - appointment.startTime).ToString().Substring(0, 5));
+                                }
+                            }
+                            writer.WriteLine();
+                            writer.WriteLine("Supervisor's Signature _______________________________");
+                            writer.Close();
+                        }
+                        printDoc(timeSheetFile);
+
+                        //blank the document once printed.
+                        using (StreamWriter writer = new StreamWriter(timeSheetFile))
+                        {
+                            writer.Close();
+                        }
+                    }
+                }
+            }
+            else
+            {
+                MessageBox.Show("No stored Appointments");
             }
         }
         #endregion
 
-        private void btnUserView_Click(object sender, EventArgs e)
-        {
-            var TutorForm = new AdminViewTutors();
-            TutorForm.ShowDialog();
-        }
+        #region done
 
         private void btnDone_Click(object sender, EventArgs e)
         {
@@ -83,6 +174,6 @@ namespace tutorTrack2
                 handler(sender, e);
             }
         }
-        
+        #endregion
     }
 }

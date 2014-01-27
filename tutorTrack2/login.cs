@@ -23,7 +23,9 @@ namespace tutorTrack2
         private void textBox1_TextChanged(object sender, EventArgs e)
         {
 
-            if (IDField.Text.Length > 0 && (IDField.Text[0] == ';' || (IDField.Text[0] == 'H' && IDField.Text.Length > 1 && char.IsDigit(IDField.Text[1])) || (IDField.Text[0] == 'h' && char.IsDigit(IDField.Text[1]))))
+            if (IDField.Text.Length > 0
+                && (IDField.Text[0] == ';' || (IDField.Text[0] == 'H' && IDField.Text.Length > 1 && char.IsDigit(IDField.Text[1])) 
+                || (IDField.Text[0] == 'h' && IDField.Text.Length > 1 && char.IsDigit(IDField.Text[1]))))
             {
                 if (IDField.Text[IDField.Text.Length - 1] == '?')
                 {
@@ -31,7 +33,11 @@ namespace tutorTrack2
                 }
                 else
                 {
-                    idString = IDField.Text.Substring(((IDField.Text.Length > 1) ? 1 : 0), (IDField.Text.Length <= 8) ? IDField.Text.Length - ((IDField.Text.Length > 1) ? 1 : 0) : 8);
+                    idString = IDField.Text.Substring(1);
+                    if (idString.Length > 8)
+                    {
+                        idString = idString.Substring(0, 8);
+                    }
                 }
             }
             else

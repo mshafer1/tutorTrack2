@@ -114,7 +114,43 @@ namespace tutorTrack2
 
         private void tBid_TextChanged(object sender, EventArgs e)
         {
-            id = tBid.Text;
+            //id = tBid.Text;
+            if (tBid.Text.Length > 0 && tBid.Text[0] == ';')
+            {
+                tBid.Text = tBid.Text.Substring(1);
+            }
+            if (tBid.Text.Length > 0 && tBid.Text[tBid.Text.Length-1] == '?')
+            {
+                tBid.Text = tBid.Text.Substring(0,8);
+            }
+            if (tBid.Text.Length > 0
+                && (tBid.Text[0] == ';' || (tBid.Text[0] == 'H' && tBid.Text.Length > 1 && char.IsDigit(tBid.Text[1]))
+                || (tBid.Text[0] == 'h' && tBid.Text.Length > 1 && char.IsDigit(tBid.Text[1]))))
+            {
+                if (tBid.Text[tBid.Text.Length - 1] == '?')
+                {
+                    id = tBid.Text.Substring(1, tBid.Text.Length - 3);
+                }
+                else
+                {
+                    id = tBid.Text.Substring(1);
+                    if (id.Length > 8)
+                    {
+                        id = id.Substring(0, 8);
+                    }
+                }
+            }
+            else
+            {
+                if (tBid.Text.Length > 0 && (char.IsLetter(tBid.Text[0]) && tBid.Text.Length > 1 && char.IsLetter(tBid.Text[1])))
+                {
+                    id = tBid.Text;
+                }
+                else
+                {
+                    id = tBid.Text.Substring(0, (tBid.Text.Length <= 8) ? tBid.Text.Length : 8);
+                }
+            }
         }
 
         private void btnOk_Click(object sender, EventArgs e)
@@ -275,5 +311,11 @@ namespace tutorTrack2
 
 
 
+
+        internal void clear()
+        {
+            tBid.Text = "Enter ID (H number) here";
+            tBName.Text = "User's Name";
+        }
     }
 }

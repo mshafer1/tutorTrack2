@@ -41,5 +41,23 @@ namespace tutorTrack2
                 ExitEventDelegate(id);
             }
         }
+
+
+        //public EventHandler noShowEventHandler;
+        //public delegate void noShowEventHandlerDelegate(string id);
+
+        //public event noShowEventHandlerDelegate noShowEventDelegate;
+        //public void noShowEvent(string id)
+        //{
+
+        //        noShowEventDelegate(id);
+
+        //}
+
+        private void btnNoShow_Click(object sender, EventArgs e)
+        {
+            ExitEvent("");
+            this.Close();
+        }
     }
 }

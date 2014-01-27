@@ -22,7 +22,11 @@ namespace tutorTrack2
                 }
                 else
                 {
+                    Course newCourse = new Course();
+                    newCourse.Name = "New";
                     p = new List<Course>();
+                    p.Add(newCourse);
+                    saveToFile();
                     //throw new Exception();
                 }
             }

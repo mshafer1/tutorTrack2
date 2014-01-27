@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(mainForm));
             this.newUserControl1 = new tutorTrack2.newUserControl();
             this.admin1 = new tutorTrack2.AdminControl();
             this.login1 = new tutorTrack2.login();
@@ -74,10 +75,11 @@
             this.Controls.Add(this.newUserControl1);
             this.Controls.Add(this.admin1);
             this.Controls.Add(this.login1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "mainForm";
-            this.Text = "Form1";
+            this.Text = "Tutor Track";
             this.ResumeLayout(false);
 
         }

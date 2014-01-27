@@ -33,6 +33,7 @@
             this.btnSheets = new System.Windows.Forms.Button();
             this.btnUserView = new System.Windows.Forms.Button();
             this.btnDone = new System.Windows.Forms.Button();
+            this.printDialog1 = new System.Windows.Forms.PrintDialog();
             this.SuspendLayout();
             // 
             // btnLogs
@@ -85,6 +86,10 @@
             this.btnDone.UseVisualStyleBackColor = true;
             this.btnDone.Click += new System.EventHandler(this.btnDone_Click);
             // 
+            // printDialog1
+            // 
+            this.printDialog1.UseEXDialog = true;
+            // 
             // AdminControl
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -95,7 +100,7 @@
             this.Controls.Add(this.btnUser);
             this.Controls.Add(this.btnLogs);
             this.Name = "AdminControl";
-            this.Size = new System.Drawing.Size(241, 138);
+            this.Size = new System.Drawing.Size(204, 138);
             this.ResumeLayout(false);
 
         }
@@ -107,5 +112,6 @@
         private System.Windows.Forms.Button btnSheets;
         private System.Windows.Forms.Button btnUserView;
         private System.Windows.Forms.Button btnDone;
+        private System.Windows.Forms.PrintDialog printDialog1;
     }
 }

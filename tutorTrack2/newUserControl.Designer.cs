@@ -133,6 +133,7 @@
             // 
             // tBid
             // 
+            this.tBid.AcceptsTab = true;
             this.tBid.Location = new System.Drawing.Point(3, 106);
             this.tBid.Name = "tBid";
             this.tBid.Size = new System.Drawing.Size(177, 20);

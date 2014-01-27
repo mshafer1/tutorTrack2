@@ -17,15 +17,12 @@ namespace tutorTrack2
         private static List<Tutor> tutors;
        
         private static List<AdminUser> admin;
-        private static List<Appointment> log;
-
 
         public mainForm()
         {
             InitializeComponent();
             login1.loginEventHandler += this.loginFunction;
             admin1.newUserEventHandler += this.newUser;
-            admin1.timeSheetsEventHandler += this.timeSheet;
             newUserControl1.newUserFinishedEventHandler += this.viewLogin;
             tutorLoggedIn1.exitTutorEventHandler += this.viewLogin;
             tutorLoggedIn1.toggleAppointmentEventHandler += this.viewLogin;
@@ -67,15 +64,10 @@ namespace tutorTrack2
             tutorLoggedIn1.Visible = false;
         }
 
-        private void timeSheet(object sender, EventArgs e)
-        {
-           // throw new NotImplementedException();
-        }
-
         private void newUser(object sender, EventArgs e)
         {
             admin1.Visible = false;
-
+            newUserControl1.clear();
             newUserControl1.Visible = true;
         }
 

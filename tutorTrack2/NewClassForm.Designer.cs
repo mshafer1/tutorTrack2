@@ -72,7 +72,7 @@
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "NewClassForm";
-            this.Text = "NewClassForm";
+            this.Text = "New Class";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.NewClassForm_FormClosing);
             this.ResumeLayout(false);
 

@@ -14,5 +14,6 @@ namespace tutorTrack2
         public DateTime endTime { get; set; }
         public bool finished { get; set; }
         public string course { get; set; }
+        public bool noShow { get; set; }
     }
 }

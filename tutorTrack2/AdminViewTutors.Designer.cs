@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(AdminViewTutors));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.clientListing1 = new tutorTrack2.clientListing();
             this.tutorCourseList1 = new tutorTrack2.TutorCourseList();
@@ -40,7 +41,6 @@
             this.listBox1.Location = new System.Drawing.Point(12, 12);
             this.listBox1.Name = "listBox1";
             this.listBox1.Size = new System.Drawing.Size(181, 186);
-            this.listBox1.Sorted = true;
             this.listBox1.TabIndex = 0;
             this.listBox1.TabStop = false;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -55,7 +55,7 @@
             // 
             // tutorCourseList1
             // 
-            this.tutorCourseList1.Location = new System.Drawing.Point(12, 12);
+            this.tutorCourseList1.Location = new System.Drawing.Point(143, 13);
             this.tutorCourseList1.Name = "tutorCourseList1";
             this.tutorCourseList1.Size = new System.Drawing.Size(675, 273);
             this.tutorCourseList1.TabIndex = 1;
@@ -80,6 +80,7 @@
             this.Controls.Add(this.clientListing1);
             this.Controls.Add(this.tutorCourseList1);
             this.Controls.Add(this.listBox1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "AdminViewTutors";

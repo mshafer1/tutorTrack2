@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TutorCoursesDisplayForm));
             this.tutorCourseList1 = new tutorTrack2.TutorCourseList();
             this.SuspendLayout();
             // 
@@ -44,8 +45,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(503, 260);
             this.Controls.Add(this.tutorCourseList1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Name = "TutorCoursesDisplayForm";
-            this.Text = "TutorCoursesDisplayForm";
+            this.Text = "Tutor Courses";
             this.ResumeLayout(false);
 
         }
