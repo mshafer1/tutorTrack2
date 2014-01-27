@@ -26,7 +26,6 @@ namespace tutorTrack2
             login1.loginEventHandler += this.loginFunction;
             admin1.newUserEventHandler += this.newUser;
             admin1.timeSheetsEventHandler += this.timeSheet;
-            admin1.viewLogsEventHandler += this.viewLogs;
             newUserControl1.newUserFinishedEventHandler += this.viewLogin;
             tutorLoggedIn1.exitTutorEventHandler += this.viewLogin;
             tutorLoggedIn1.toggleAppointmentEventHandler += this.viewLogin;
@@ -66,11 +65,6 @@ namespace tutorTrack2
             admin1.Visible = false;
             newUserControl1.Visible = false;
             tutorLoggedIn1.Visible = false;
-        }
-
-        private void viewLogs(object sender, EventArgs e)
-        {
-         //   throw new NotImplementedException();
         }
 
         private void timeSheet(object sender, EventArgs e)

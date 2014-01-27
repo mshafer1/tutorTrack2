@@ -38,18 +38,11 @@ namespace tutorTrack2
         #region View Logs
         private void btnLogs_Click(object sender, EventArgs e)
         {
-            viewLogsEvent(sender, e);
+            var display = new LogView();
+            display.ShowDialog();
+
         }
-        public EventHandler viewLogsEventHandler;
-        public delegate void viewLogsEventHandlerDelegate(object sender, EventArgs e);
-        public void viewLogsEvent(object sender, EventArgs e)
-        {
-            EventHandler handler = viewLogsEventHandler;
-            if (handler != null)
-            {
-                handler(sender, e);
-            }
-        }
+        
         #endregion
 
         #region print time sheets

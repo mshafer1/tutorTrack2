@@ -64,6 +64,12 @@
     <Compile Include="ClientConfirm.Designer.cs">
       <DependentUpon>ClientConfirm.cs</DependentUpon>
     </Compile>
+    <Compile Include="LogView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="LogView.Designer.cs">
+      <DependentUpon>LogView.cs</DependentUpon>
+    </Compile>
     <Compile Include="SingletonAppointmentList.cs" />
     <Compile Include="AvlTree.cs" />
     <Compile Include="Client.cs" />
@@ -170,6 +176,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EditClasses.resx">
       <DependentUpon>EditClasses.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="LogView.resx">
+      <DependentUpon>LogView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="mainForm.resx">
       <DependentUpon>mainForm.cs</DependentUpon>

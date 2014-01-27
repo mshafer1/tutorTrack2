@@ -13,5 +13,6 @@ namespace tutorTrack2
         public DateTime startTime { get; set; }
         public DateTime endTime { get; set; }
         public bool finished { get; set; }
+        public string course { get; set; }
     }
 }
